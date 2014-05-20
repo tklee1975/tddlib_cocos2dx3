@@ -1,4 +1,5 @@
 #include "HelloWorldScene.h"
+#include "TDDHelper.h"
 
 USING_NS_CC;
 
@@ -72,6 +73,9 @@ bool HelloWorld::init()
     // add the sprite as a child to this layer
     this->addChild(sprite, 0);
     
+	// test button
+	TDDHelper::addTestButton(this, Point(visibleSize.width/2, 50));
+	
     return true;
 }
 

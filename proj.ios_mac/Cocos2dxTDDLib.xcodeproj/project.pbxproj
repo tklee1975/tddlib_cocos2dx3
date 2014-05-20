@@ -62,6 +62,18 @@
 		50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 50EF629517ECD46A001EB2F8 /* Icon-100.png */; };
 		50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 50EF62A017ECD613001EB2F8 /* Icon-29.png */; };
 		50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 50EF62A117ECD613001EB2F8 /* Icon-50.png */; };
+		73943963192BBE06009761FA /* TDDTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73943954192BBE06009761FA /* TDDTest.cpp */; };
+		73943964192BBE06009761FA /* TDDTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73943954192BBE06009761FA /* TDDTest.cpp */; };
+		73943965192BBE06009761FA /* TDDHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73943955192BBE06009761FA /* TDDHelper.cpp */; };
+		73943966192BBE06009761FA /* TDDHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73943955192BBE06009761FA /* TDDHelper.cpp */; };
+		73943967192BBE06009761FA /* TDDMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73943959192BBE06009761FA /* TDDMenu.cpp */; };
+		73943968192BBE06009761FA /* TDDMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73943959192BBE06009761FA /* TDDMenu.cpp */; };
+		73943969192BBE06009761FA /* TDDMenuTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7394395C192BBE06009761FA /* TDDMenuTest.cpp */; };
+		7394396A192BBE06009761FA /* TDDMenuTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7394395C192BBE06009761FA /* TDDMenuTest.cpp */; };
+		7394396B192BBE06009761FA /* SampleTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7394395D192BBE06009761FA /* SampleTest.cpp */; };
+		7394396C192BBE06009761FA /* SampleTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7394395D192BBE06009761FA /* SampleTest.cpp */; };
+		7394396D192BBE06009761FA /* TDDSuite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7394395E192BBE06009761FA /* TDDSuite.cpp */; };
+		7394396E192BBE06009761FA /* TDDSuite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7394395E192BBE06009761FA /* TDDSuite.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -107,20 +119,6 @@
 			remoteGlobalIDString = A03F2ED617814268006731B9;
 			remoteInfo = "CocosDenshion Mac";
 		};
-		1AC6FB02180E9839004C840B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1AC6FAE5180E9839004C840B /* cocos2d_libs.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = A03F31FD1781479B006731B9;
-			remoteInfo = "jsbindings Mac";
-		};
-		1AC6FB04180E9839004C840B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1AC6FAE5180E9839004C840B /* cocos2d_libs.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1A6FB53017854BC300CDF010;
-			remoteInfo = "luabindings Mac";
-		};
 		1AC6FB06180E9839004C840B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1AC6FAE5180E9839004C840B /* cocos2d_libs.xcodeproj */;
@@ -155,20 +153,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = A07A4FB4178387730073F6A7;
 			remoteInfo = "CocosDenshion iOS";
-		};
-		1AC6FB10180E9839004C840B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1AC6FAE5180E9839004C840B /* cocos2d_libs.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = A07A5030178387750073F6A7;
-			remoteInfo = "jsbindings iOS";
-		};
-		1AC6FB12180E9839004C840B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1AC6FAE5180E9839004C840B /* cocos2d_libs.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1A119791178526AA00D62A44;
-			remoteInfo = "luabindings iOS";
 		};
 		1AC6FB15180E9959004C840B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -288,6 +272,21 @@
 		50EF629517ECD46A001EB2F8 /* Icon-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-100.png"; sourceTree = "<group>"; };
 		50EF62A017ECD613001EB2F8 /* Icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29.png"; sourceTree = "<group>"; };
 		50EF62A117ECD613001EB2F8 /* Icon-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-50.png"; sourceTree = "<group>"; };
+		73943954192BBE06009761FA /* TDDTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TDDTest.cpp; path = ../Classes/TDDLib/TDDTest.cpp; sourceTree = "<group>"; };
+		73943955192BBE06009761FA /* TDDHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TDDHelper.cpp; path = ../Classes/TDDLib/TDDHelper.cpp; sourceTree = "<group>"; };
+		73943956192BBE06009761FA /* TDDHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDDHelper.h; path = ../Classes/TDDLib/TDDHelper.h; sourceTree = "<group>"; };
+		73943957192BBE06009761FA /* TDDLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDDLib.h; path = ../Classes/TDDLib/TDDLib.h; sourceTree = "<group>"; };
+		73943958192BBE06009761FA /* TDDTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDDTest.h; path = ../Classes/TDDLib/TDDTest.h; sourceTree = "<group>"; };
+		73943959192BBE06009761FA /* TDDMenu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TDDMenu.cpp; path = ../Classes/TDDLib/TDDMenu.cpp; sourceTree = "<group>"; };
+		7394395A192BBE06009761FA /* SampleTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SampleTest.h; path = ../Classes/TDDLib/SampleTest.h; sourceTree = "<group>"; };
+		7394395B192BBE06009761FA /* TDDCases.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDDCases.h; path = ../Classes/TDDLib/TDDCases.h; sourceTree = "<group>"; };
+		7394395C192BBE06009761FA /* TDDMenuTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TDDMenuTest.cpp; path = ../Classes/TDDLib/TDDMenuTest.cpp; sourceTree = "<group>"; };
+		7394395D192BBE06009761FA /* SampleTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SampleTest.cpp; path = ../Classes/TDDLib/SampleTest.cpp; sourceTree = "<group>"; };
+		7394395E192BBE06009761FA /* TDDSuite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TDDSuite.cpp; path = ../Classes/TDDLib/TDDSuite.cpp; sourceTree = "<group>"; };
+		7394395F192BBE06009761FA /* TDDMenuTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDDMenuTest.h; path = ../Classes/TDDLib/TDDMenuTest.h; sourceTree = "<group>"; };
+		73943960192BBE06009761FA /* TDDMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDDMenu.h; path = ../Classes/TDDLib/TDDMenu.h; sourceTree = "<group>"; };
+		73943961192BBE06009761FA /* TDDSuite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDDSuite.h; path = ../Classes/TDDLib/TDDSuite.h; sourceTree = "<group>"; };
+		73943962192BBE06009761FA /* TDDTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDDTypes.h; path = ../Classes/TDDLib/TDDTypes.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -364,6 +363,7 @@
 		15AA9C4015B7EC450033D6C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				73943951192BBDA9009761FA /* TDDLib */,
 				1AFAF8B316D35DE700DB1158 /* AppDelegate.cpp */,
 				1AFAF8B416D35DE700DB1158 /* AppDelegate.h */,
 				1AFAF8B516D35DE700DB1158 /* HelloWorldScene.cpp */,
@@ -390,15 +390,11 @@
 				1AC6FAFD180E9839004C840B /* libchipmunk Mac.a */,
 				1AC6FAFF180E9839004C840B /* libbox2d Mac.a */,
 				1AC6FB01180E9839004C840B /* libCocosDenshion Mac.a */,
-				1AC6FB03180E9839004C840B /* libjsbindings Mac.a */,
-				1AC6FB05180E9839004C840B /* libluabindings Mac.a */,
 				1AC6FB07180E9839004C840B /* libcocos2dx iOS.a */,
 				1AC6FB09180E9839004C840B /* libcocos2dx-extensions iOS.a */,
 				1AC6FB0B180E9839004C840B /* libchipmunk iOS.a */,
 				1AC6FB0D180E9839004C840B /* libbox2d iOS.a */,
 				1AC6FB0F180E9839004C840B /* libCocosDenshion iOS.a */,
-				1AC6FB11180E9839004C840B /* libjsbindings iOS.a */,
-				1AC6FB13180E9839004C840B /* libluabindings iOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -483,6 +479,28 @@
 			name = Icons;
 			path = ios;
 			sourceTree = SOURCE_ROOT;
+		};
+		73943951192BBDA9009761FA /* TDDLib */ = {
+			isa = PBXGroup;
+			children = (
+				73943954192BBE06009761FA /* TDDTest.cpp */,
+				73943955192BBE06009761FA /* TDDHelper.cpp */,
+				73943956192BBE06009761FA /* TDDHelper.h */,
+				73943957192BBE06009761FA /* TDDLib.h */,
+				73943958192BBE06009761FA /* TDDTest.h */,
+				73943959192BBE06009761FA /* TDDMenu.cpp */,
+				7394395A192BBE06009761FA /* SampleTest.h */,
+				7394395B192BBE06009761FA /* TDDCases.h */,
+				7394395C192BBE06009761FA /* TDDMenuTest.cpp */,
+				7394395D192BBE06009761FA /* SampleTest.cpp */,
+				7394395E192BBE06009761FA /* TDDSuite.cpp */,
+				7394395F192BBE06009761FA /* TDDMenuTest.h */,
+				73943960192BBE06009761FA /* TDDMenu.h */,
+				73943961192BBE06009761FA /* TDDSuite.h */,
+				73943962192BBE06009761FA /* TDDTypes.h */,
+			);
+			name = TDDLib;
+			sourceTree = "<group>";
 		};
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
@@ -617,20 +635,6 @@
 			remoteRef = 1AC6FB00180E9839004C840B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		1AC6FB03180E9839004C840B /* libjsbindings Mac.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libjsbindings Mac.a";
-			remoteRef = 1AC6FB02180E9839004C840B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		1AC6FB05180E9839004C840B /* libluabindings Mac.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libluabindings Mac.a";
-			remoteRef = 1AC6FB04180E9839004C840B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		1AC6FB07180E9839004C840B /* libcocos2dx iOS.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -664,20 +668,6 @@
 			fileType = archive.ar;
 			path = "libCocosDenshion iOS.a";
 			remoteRef = 1AC6FB0E180E9839004C840B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		1AC6FB11180E9839004C840B /* libjsbindings iOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libjsbindings iOS.a";
-			remoteRef = 1AC6FB10180E9839004C840B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		1AC6FB13180E9839004C840B /* libluabindings iOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libluabindings iOS.a";
-			remoteRef = 1AC6FB12180E9839004C840B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -727,10 +717,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73943965192BBE06009761FA /* TDDHelper.cpp in Sources */,
+				73943963192BBE06009761FA /* TDDTest.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
+				7394396B192BBE06009761FA /* SampleTest.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				1AFAF8B716D35DE700DB1158 /* AppDelegate.cpp in Sources */,
+				73943967192BBE06009761FA /* TDDMenu.cpp in Sources */,
+				7394396D192BBE06009761FA /* TDDSuite.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
+				73943969192BBE06009761FA /* TDDMenuTest.cpp in Sources */,
 				1AFAF8B816D35DE700DB1158 /* HelloWorldScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -739,8 +735,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73943964192BBE06009761FA /* TDDTest.cpp in Sources */,
+				7394396C192BBE06009761FA /* SampleTest.cpp in Sources */,
+				7394396E192BBE06009761FA /* TDDSuite.cpp in Sources */,
+				73943968192BBE06009761FA /* TDDMenu.cpp in Sources */,
+				7394396A192BBE06009761FA /* TDDMenuTest.cpp in Sources */,
 				5087E75717EB910900C73F5D /* AppDelegate.cpp in Sources */,
 				5087E75817EB910900C73F5D /* HelloWorldScene.cpp in Sources */,
+				73943966192BBE06009761FA /* TDDHelper.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -816,6 +818,7 @@
 					CC_TARGET_OS_IPHONE,
 					"COCOS2D_DEBUG=1",
 					"CC_ENABLE_CHIPMUNK_INTEGRATION=1",
+					ENABLE_TDD,
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = (

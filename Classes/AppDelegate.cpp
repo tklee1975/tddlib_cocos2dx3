@@ -11,6 +11,20 @@ AppDelegate::~AppDelegate()
 {
 }
 
+void setupResolutionPolicy(float designW, float designH)
+{
+	GLView *view = Director::getInstance()->getOpenGLView();
+	Size screenSize = view->getFrameSize();
+    
+	float designRatio = designW / designH;
+	float screenRatio = screenSize.height / screenSize.width;
+	
+	ResolutionPolicy resolutionPolicy = screenRatio < designRatio ?
+	ResolutionPolicy::FIXED_HEIGHT : ResolutionPolicy::FIXED_WIDTH;
+	
+    view->setDesignResolutionSize(designW, designH, resolutionPolicy);
+}
+
 bool AppDelegate::applicationDidFinishLaunching() {
     // initialize director
     auto director = Director::getInstance();
@@ -19,12 +33,14 @@ bool AppDelegate::applicationDidFinishLaunching() {
         glview = GLView::create("My Game");
         director->setOpenGLView(glview);
     }
+	
+	setupResolutionPolicy(800, 400);	// 800 x 400 is a common android resolution
 
     // turn on display FPS
     director->setDisplayStats(true);
 
     // set FPS. the default value is 1.0/60 if you don't call this
-    director->setAnimationInterval(1.0 / 60);
+    director->setAnimationInterval(1.0 / 30);
 
     // create a scene. it's an autorelease object
     auto scene = HelloWorld::createScene();
