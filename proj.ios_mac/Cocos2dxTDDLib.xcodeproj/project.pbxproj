@@ -74,6 +74,8 @@
 		7394396C192BBE06009761FA /* SampleTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7394395D192BBE06009761FA /* SampleTest.cpp */; };
 		7394396D192BBE06009761FA /* TDDSuite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7394395E192BBE06009761FA /* TDDSuite.cpp */; };
 		7394396E192BBE06009761FA /* TDDSuite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7394395E192BBE06009761FA /* TDDSuite.cpp */; };
+		73943972192BC7C3009761FA /* ExampleTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73943970192BC7C3009761FA /* ExampleTest.cpp */; };
+		73943973192BC7C3009761FA /* ExampleTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73943970192BC7C3009761FA /* ExampleTest.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -287,6 +289,8 @@
 		73943960192BBE06009761FA /* TDDMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDDMenu.h; path = ../Classes/TDDLib/TDDMenu.h; sourceTree = "<group>"; };
 		73943961192BBE06009761FA /* TDDSuite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDDSuite.h; path = ../Classes/TDDLib/TDDSuite.h; sourceTree = "<group>"; };
 		73943962192BBE06009761FA /* TDDTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDDTypes.h; path = ../Classes/TDDLib/TDDTypes.h; sourceTree = "<group>"; };
+		73943970192BC7C3009761FA /* ExampleTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ExampleTest.cpp; sourceTree = "<group>"; };
+		73943971192BC7C3009761FA /* ExampleTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleTest.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -363,6 +367,7 @@
 		15AA9C4015B7EC450033D6C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				7394396F192BC7C3009761FA /* UnitTest */,
 				73943951192BBDA9009761FA /* TDDLib */,
 				1AFAF8B316D35DE700DB1158 /* AppDelegate.cpp */,
 				1AFAF8B416D35DE700DB1158 /* AppDelegate.h */,
@@ -500,6 +505,16 @@
 				73943962192BBE06009761FA /* TDDTypes.h */,
 			);
 			name = TDDLib;
+			sourceTree = "<group>";
+		};
+		7394396F192BC7C3009761FA /* UnitTest */ = {
+			isa = PBXGroup;
+			children = (
+				73943970192BC7C3009761FA /* ExampleTest.cpp */,
+				73943971192BC7C3009761FA /* ExampleTest.h */,
+			);
+			name = UnitTest;
+			path = ../Classes/UnitTest;
 			sourceTree = "<group>";
 		};
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
@@ -725,6 +740,7 @@
 				1AFAF8B716D35DE700DB1158 /* AppDelegate.cpp in Sources */,
 				73943967192BBE06009761FA /* TDDMenu.cpp in Sources */,
 				7394396D192BBE06009761FA /* TDDSuite.cpp in Sources */,
+				73943972192BC7C3009761FA /* ExampleTest.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				73943969192BBE06009761FA /* TDDMenuTest.cpp in Sources */,
 				1AFAF8B816D35DE700DB1158 /* HelloWorldScene.cpp in Sources */,
@@ -737,6 +753,7 @@
 			files = (
 				73943964192BBE06009761FA /* TDDTest.cpp in Sources */,
 				7394396C192BBE06009761FA /* SampleTest.cpp in Sources */,
+				73943973192BC7C3009761FA /* ExampleTest.cpp in Sources */,
 				7394396E192BBE06009761FA /* TDDSuite.cpp in Sources */,
 				73943968192BBE06009761FA /* TDDMenu.cpp in Sources */,
 				7394396A192BBE06009761FA /* TDDMenuTest.cpp in Sources */,
