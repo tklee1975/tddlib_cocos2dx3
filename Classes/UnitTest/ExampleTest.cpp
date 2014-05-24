@@ -25,15 +25,57 @@ void ExampleTest::tearDown()
 
 void ExampleTest::setSubTest(Vector<MenuItem *> &menuArray)
 {
-	SUBTEST(ExampleTest::subTest);
+	SUBTEST(ExampleTest::testLabel);
+	SUBTEST(ExampleTest::testSprite);
 }
 
 #pragma mark -
 #pragma mark Sub Test Definition
-void ExampleTest::subTest(Ref *sender)
+void ExampleTest::testLabel(Ref *sender)
 {
-	log("this is a sample subTest");
+	log("testLabel");
+	
+	std::string fontName = "Marker Felt.ttf";
+	float fontSize = 40.0f;
+	
+	float x = 20;
+	float y = 80;
+	
+	int repeat = 7;
+	int step = 5;
+	
+	for(int i=0; i<repeat; i++) {
+		char temp[100];
+		sprintf(temp, "%s %.0f", fontName.c_str(), fontSize);
+		Label *label = Label::createWithTTF(temp, fontName, fontSize);
+		label->setAnchorPoint(Point(0, 0));
+		label->setPosition(x, y);
+		addChild(label);
+
+		y += fontSize + 5;
+		fontSize -= step;
+	}
+	
 }
 
+void ExampleTest::testSprite(Ref *sender)
+{
+	log("testSprite");
+	
+    // add "HelloWorld" splash screen"
+	Sprite *sprite = Sprite::create("HelloWorld.png");
+	sprite->setScale(0.5, 0.5f);
+    sprite->setPosition(Point(200, 300));
+	
+    this->addChild(sprite, 0);
+	
+	sprite = Sprite::create("HelloWorld.png");
+	sprite->setScale(0.3, 0.3f);
+	sprite->setRotation(45.0f);
+    sprite->setPosition(Point(200, 150));
+	
+    this->addChild(sprite, 0);
+	
+}
 
 #endif

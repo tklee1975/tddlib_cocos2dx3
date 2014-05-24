@@ -76,6 +76,7 @@
 		7394396E192BBE06009761FA /* TDDSuite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7394395E192BBE06009761FA /* TDDSuite.cpp */; };
 		73943972192BC7C3009761FA /* ExampleTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73943970192BC7C3009761FA /* ExampleTest.cpp */; };
 		73943973192BC7C3009761FA /* ExampleTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73943970192BC7C3009761FA /* ExampleTest.cpp */; };
+		73D9E885192E576100EB02D1 /* Marker Felt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 73D9E884192E576100EB02D1 /* Marker Felt.ttf */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -291,6 +292,8 @@
 		73943962192BBE06009761FA /* TDDTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDDTypes.h; path = ../Classes/TDDLib/TDDTypes.h; sourceTree = "<group>"; };
 		73943970192BC7C3009761FA /* ExampleTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ExampleTest.cpp; sourceTree = "<group>"; };
 		73943971192BC7C3009761FA /* ExampleTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleTest.h; sourceTree = "<group>"; };
+		73D9E880192E540800EB02D1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		73D9E884192E576100EB02D1 /* Marker Felt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Marker Felt.ttf"; path = "fonts/Marker Felt.ttf"; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -414,6 +417,7 @@
 				503AE10617EB990700D1A890 /* mac */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				78C7DDAA14EBA5050085D0C2 /* Resources */,
+				73D9E880192E540800EB02D1 /* README.md */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -520,6 +524,7 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				73D9E884192E576100EB02D1 /* Marker Felt.ttf */,
 				1AFAF8B916D35E4900DB1158 /* CloseNormal.png */,
 				1AFAF8BA16D35E4900DB1158 /* CloseSelected.png */,
 				1AFAF8BB16D35E4900DB1158 /* HelloWorld.png */,
@@ -707,6 +712,7 @@
 				50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */,
 				50EF629617ECD46A001EB2F8 /* Icon-40.png in Resources */,
 				5087E78217EB970100C73F5D /* Icon-144.png in Resources */,
+				73D9E885192E576100EB02D1 /* Marker Felt.ttf in Resources */,
 				50EF629817ECD46A001EB2F8 /* Icon-80.png in Resources */,
 				5087E78417EB970100C73F5D /* Icon-57.png in Resources */,
 				5087E77E17EB970100C73F5D /* Default.png in Resources */,
@@ -897,6 +903,7 @@
 					CC_TARGET_OS_MAC,
 					"COCOS2D_DEBUG=1",
 					"CC_ENABLE_CHIPMUNK_INTEGRATION=1",
+					ENABLE_TDD,
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = (

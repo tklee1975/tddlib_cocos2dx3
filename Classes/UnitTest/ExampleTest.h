@@ -19,7 +19,8 @@ protected:
 	virtual void setSubTest(Vector<MenuItem *> &menuArray);
 	
 private:
-	void subTest(Ref *sender);
+	void testLabel(Ref *sender);
+	void testSprite(Ref *sender);
 }; 
 
 #endif
