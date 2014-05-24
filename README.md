@@ -1,7 +1,7 @@
 TDDLib on cocos2d-x
 ================
 
-(Preview at http://dillinger.io/)
+(This README is composed in http://dillinger.io/)
 
 A Test Driven Development Framework for cocos2d-x 3.0 final. 
 It helps building unit tests with cocos2d-x 3.0.
