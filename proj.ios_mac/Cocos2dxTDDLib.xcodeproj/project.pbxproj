@@ -294,6 +294,7 @@
 		73943971192BC7C3009761FA /* ExampleTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleTest.h; sourceTree = "<group>"; };
 		73D9E880192E540800EB02D1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		73D9E884192E576100EB02D1 /* Marker Felt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Marker Felt.ttf"; path = "fonts/Marker Felt.ttf"; sourceTree = "<group>"; };
+		73F891E41931034F00239ACA /* MyTDDCases.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyTDDCases.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -516,6 +517,7 @@
 			children = (
 				73943970192BC7C3009761FA /* ExampleTest.cpp */,
 				73943971192BC7C3009761FA /* ExampleTest.h */,
+				73F891E41931034F00239ACA /* MyTDDCases.h */,
 			);
 			name = UnitTest;
 			path = ../Classes/UnitTest;

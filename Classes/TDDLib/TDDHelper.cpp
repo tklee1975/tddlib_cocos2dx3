@@ -156,6 +156,8 @@ void TDDHelper::saveFilter(const char *pattern)
 	
 	CCUserDefault::getInstance()->setStringForKey(kTDDFilterKey, pattern);
 	log("Save filter %s for key=%s", pattern, kTDDFilterKey);
+
+	CCUserDefault::getInstance()->flush();
 }
 
 const char *TDDHelper::getFilter()

@@ -13,20 +13,18 @@
 #include "TDDTypes.h"
 #include "TDDTest.h"		// contain the data structure
 
-// Add the Header here!
-#include "SampleTest.h"
-#include "ExampleTest.h"
 
 // MACRO
-#define ADD_CASE(__ClassName__)		 			{#__ClassName__, []() { return new __ClassName__(); } }
 
-// Define
-TDDTestCase gTestArray[] =
-{
-	ADD_CASE(TDDTest),
-	ADD_CASE(TDDSample1),
-	ADD_CASE(ExampleTest),
-};
+// ADD_CASE will be used in MyTDDCases.h
+#define TEST(__ClassName__)		 			{#__ClassName__, []() { return new __ClassName__(); } }
+
+#define TDD_CASES								TDDTestCase gTestArray[] =
+
+// Definition of the Unit Test Cases by users
+#include "MyTDDCases.h"
+
+
 
 #endif
 #endif
