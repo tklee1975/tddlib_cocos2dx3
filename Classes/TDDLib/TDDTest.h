@@ -48,6 +48,7 @@ protected:
 	void hideToolBar();
 	void setMenuVisible(bool flag);
 	void setToolBarOpacity(GLubyte value);
+	void setBackgroundColor(const Color3B &color);
 
 private:
 	void setupGUI();
@@ -67,6 +68,7 @@ private:
 // private data
 private:
 	Layer *mControlLayer;	// Core control layer contains ToolBar & SubTest Menu
+	LayerColor *mBackLayer;		// Background Layer, default color is GRAY
 	LayerColor *mToolBarLayer;
 	TDDMenu *mTDDMenu;
 	bool mMenuVisible;

@@ -11,6 +11,7 @@
 
 #include "cocos2d.h"
 #include "cocos-ext.h"
+#include <vector>
 
 USING_NS_CC_EXT;
 
@@ -31,7 +32,8 @@ private:
 	bool hasStat;
 };
 
-class TDDSuiteLayer : public Layer
+class TDDSuiteLayer : public Layer,
+				public cocos2d::extension::EditBoxDelegate
 {
 public:
     TDDSuiteLayer();
@@ -57,8 +59,14 @@ private:
 	void refreshTestMenu();
 	const char *getFilterName();
 	Layer *createToolBarLayer();	// Tool Bar
+	void createMenuItemArray(const std::vector<int> &testIndices, Vector<MenuItem *> &menuArray);
 	
-	
+	// public cocos2d::extension::EditBoxDelegate
+    virtual void editBoxTextChanged(cocos2d::extension::EditBox* editBox, const std::string& text);
+	virtual void editBoxEditingDidBegin(cocos2d::extension::EditBox* editBox);
+    virtual void editBoxEditingDidEnd(cocos2d::extension::EditBox* editBox);
+    virtual void editBoxReturn(cocos2d::extension::EditBox* editBox);
+
 };
 
 

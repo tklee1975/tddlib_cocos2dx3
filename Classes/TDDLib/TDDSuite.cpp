@@ -13,6 +13,7 @@
 #include "TDDCases.h"
 #include "TDDHelper.h"
 #include "TDDMenu.h"
+#include "TDDConstant.h"
 
 static int gTestCount = sizeof(gTestArray) / sizeof(gTestArray[0]);
 
@@ -20,8 +21,9 @@ static int gTestCount = sizeof(gTestArray) / sizeof(gTestArray[0]);
 #define kLineHeight			kDefaultMenuRowHeight
 #define kToolBarHeight		kDefaultToolbarHeight
 
-#define kColorTestMenu		Color4B(50, 50, 100, 255)
-#define kColorToolBar		Color4B(50, 100, 50, 255)
+//#define kColorTestMenu		Color4B(50, 50, 100, 255)
+#define kColorTestMenu		Color4B(255, 255, 255, 255)
+#define kColorToolBar		Color4B(TDD_COLOR_BLUE2)
 
 #pragma mark -
 #pragma mark Local Function
@@ -82,6 +84,9 @@ void TDDSuiteScene::onExit()
 TDDSuiteLayer::TDDSuiteLayer()
 : mEditFilter(NULL)
 {
+	LayerColor *bgLayer = LayerColor::create(Color4B::WHITE, 800, 400);
+	addChild(bgLayer);
+	
 	setupTestMenu();
 	setupToolBar();
 	
@@ -141,6 +146,7 @@ Layer *TDDSuiteLayer::createToolBarLayer()
 	
 	mEditFilter = TDDHelper::createEditBox(menuLayer, Point(inputX, midY), Size(inputW, inputH));
 	mEditFilter->setText(TDDHelper::getFilter());
+	mEditFilter->setDelegate(this);
 	
 	Menu *menuFind = TDDHelper::createMenu(Point(findX, midY), "Find",
 										   CC_CALLBACK_1(TDDSuiteLayer::filterTest, this));
@@ -180,6 +186,24 @@ const char *TDDSuiteLayer::getFilterName()
 	return TDDHelper::getFilter();
 }
 
+void TDDSuiteLayer::createMenuItemArray(const std::vector<int> &testIndices, Vector<MenuItem *> &menuArray)
+{
+	MenuItemFont::setFontName("GillSans");
+	MenuItemFont::setFontSize(22);
+	
+	MenuItem *menuItem;
+	for(int i=0; i<testIndices.size(); i++) {
+		int index = testIndices.at(i);
+		
+		const char *name = gTestArray[index].name;
+		
+		//menuItem = TDDHelper::createMenuItem(name, CC_CALLBACK_1(TDDSuiteLayer::menuCallback, this));
+		menuItem = TDDHelper::createMenuItemWithFont(name, "GillSans", CC_CALLBACK_1(TDDSuiteLayer::menuCallback, this));
+		menuItem->setTag(index);	// this must be the index of the test in the gTestArray
+		
+		menuArray.pushBack(menuItem);
+	}
+}
 
 void TDDSuiteLayer::refreshTestMenu()
 {
@@ -190,21 +214,45 @@ void TDDSuiteLayer::refreshTestMenu()
 	// TODO: Filtering !!!!
 	const char *filterPattern = getFilterName();
 	
-	MenuItem *menuItem;
+	std::vector<int> selectedIndices;
 	for (int i = 0; i < gTestCount; i++)
-    {
+	{
 		const char *name = gTestArray[i].name;
 		if(passFilter(name, filterPattern) == false) {
 			continue;
 		}
-		
-		menuItem = TDDHelper::createMenuItem(name, CC_CALLBACK_1(TDDSuiteLayer::menuCallback, this));
-		menuItem->setTag(i);	// this must be the index of the test in the gTestArray
-		
-		menuArray.pushBack(menuItem);
-    }
+
+		selectedIndices.push_back(i);
+	}
 	
-	mTestMenu->setMenuItems(menuArray);
+	createMenuItemArray(selectedIndices, menuArray);
+	
+	// mTestMenu->setMenuItems(menuArray);
+	mTestMenu->setItemsWithColumn(menuArray);
+}
+
+#pragma mark -
+#pragma mark EditBoxDelegate
+void TDDSuiteLayer::editBoxTextChanged(cocos2d::extension::EditBox* editBox, const std::string& text)
+{
+	log("editBox change to [%s]", text.c_str());
+	
+	filterTest(NULL);
+}
+
+void TDDSuiteLayer::editBoxEditingDidBegin(cocos2d::extension::EditBox* editBox)
+{
+	
+}
+
+void TDDSuiteLayer::editBoxEditingDidEnd(cocos2d::extension::EditBox* editBox)
+{
+	
+}
+
+void TDDSuiteLayer::editBoxReturn(cocos2d::extension::EditBox* editBox)
+{
+	
 }
 
 

@@ -8,6 +8,7 @@
 
 #include "TDDHelper.h"
 #include "TDDSuite.h"
+#include "TDDConstant.h"
 
 //#include "GUIHelper.h"
 
@@ -67,6 +68,8 @@ void TDDHelper::showTests()
 #endif
 }
 
+#pragma mark - GUI Helper
+
 MenuItem *TDDHelper::createMenuItem(const char *name, const ccMenuCallback& callback)
 {
 	auto label = LabelTTF::create(name, kDefaultFont, kDefaultFontSize);
@@ -76,9 +79,38 @@ MenuItem *TDDHelper::createMenuItem(const char *name, const ccMenuCallback& call
 	return menuItem;
 }
 
+MenuItem *TDDHelper::createMenuItemWithFont(const char *name,
+											const char *font,
+											Color3B color,
+											const ccMenuCallback& callback)
+{
+//	Label *label = Label::createWithSystemFont(value, _fontName, _fontSize);
+//    if (MenuItemLabel::initWithLabel(label, callback))
+
+	
+	// LabelTTF *label = LabelTTF::create(name, kDefaultFont, kDefaultFontSize);
+	Label *label = Label::createWithSystemFont(name, font, kDefaultFontSize);
+	setLabelColor(label, color);
+	
+	return MenuItemLabel::create(label, callback);
+
+}
+
+
+MenuItem *TDDHelper::createMenuItemWithFont(const char *name, const char *font,
+											const ccMenuCallback& callback)
+{
+	Label *label = Label::createWithSystemFont(name, font, kDefaultFontSize);
+	setLabelColor(label, TDD_COLOR_BLUE2);
+	
+	return MenuItemLabel::create(label, callback);
+}
+
+
 Menu *TDDHelper::createMenu(Point pos, const char *name, const ccMenuCallback& callback)
 {
-	auto menuItem = createMenuItem(name, callback);
+	
+	auto menuItem = createMenuItemWithFont(name, kDefaultFont, Color3B::WHITE, callback);
 	Menu *menu = Menu::create(menuItem, NULL);
 	menu->setPosition(pos);
 	
@@ -106,13 +138,42 @@ void TDDHelper::addTestButton(Node *parent, Point pos)
 	parent->addChild(menu);
 }
 
+
+EditBox * TDDHelper::createEditBox(Node *parent, Point position, Size size)
+{
+	Scale9Sprite *bg = Scale9Sprite::create();	// empty sprite 9
+	bg->addChild(LayerColor::create(Color4B::WHITE, size.width, size.height));
+	
+	// Add the background layer
+	Point layerPos = Point(position);
+	layerPos.x -= size.width / 2;
+	layerPos.y -= size.height / 2;
+	
+	
+	// Add the Edit box
+	EditBox *edit = EditBox::create(size, bg);
+	edit->setPosition(position);
+	
+	edit->setFont(TDD_FONT_NAME, TDD_EDITBOX_FONT_SIZE);
+	edit->setFontColor(TDD_EDITBOX_TEXT_COLOR);
+	
+	if(parent != NULL) {
+		parent->addChild(edit);
+	}
+	
+	return edit;
+}
+
+
+
+
 void TDDHelper::scrollToTop(ScrollView *scrollView)
 {
 	Size containerSize = scrollView->getContainer()->getContentSize();
 	
 	Point offset = Point(0, -containerSize.height + scrollView->getViewSize().height);
 	
-	log("containerH=%f scrollH=%f", containerSize.height, scrollView->getViewSize().height);
+	// log("containerH=%f scrollH=%f", containerSize.height, scrollView->getViewSize().height);
 	
 	//[scrollView setContentOffset:offset animated:NO];
 	scrollView->setContentOffset(offset);
@@ -126,29 +187,6 @@ Point TDDHelper::getCenter(Size &parentSize, Size &nodeSize)
 	
 	return Point(x, y);
 }
-
-EditBox * TDDHelper::createEditBox(Node *parent, Point position, Size size)
-{
-	Scale9Sprite *bg = Scale9Sprite::create();	// empty sprite 9
-
-	// Add the background layer
-	Point layerPos = Point(position);
-	layerPos.x -= size.width / 2;
-	layerPos.y -= size.height / 2;
-	
-	LayerColor *layer = LayerColor::create(Color4B::GRAY, size.width, size.height);
-	layer->setPosition(layerPos);
-	parent->addChild(layer);
-	
-	// Add the Edit box
-	EditBox *box = EditBox::create(size, bg);
-	box->setPosition(position);
-	parent->addChild(box);
-	
-	return box;
-}
-
-
 
 void TDDHelper::saveFilter(const char *pattern)
 {
@@ -217,3 +255,59 @@ Layer *TDDHelper::createKeyPadLayer(Object *target, Control::Handler handler)
 
 	return layer;
 } */
+
+
+
+
+const Size TDDHelper::alignMenuItem(Menu *menu, int parentWidth, int numCol, int lineSpace)
+{
+	Vector<Node *> childrenNode = menu->getChildren();
+	
+	int width = parentWidth;
+	int colWidth = width/numCol;
+	
+	int x;
+	int y = 0;
+	int maxH = 0;
+	int spacing = lineSpace;
+	int totalH = 0;
+	int firstX = colWidth/2 + (numCol - 1) * colWidth;
+	
+	int count = (int) childrenNode.size();
+	int remain = (count - 1) % numCol;
+	x = remain * colWidth + colWidth/2;
+	
+	for(int i=(count-1); i>=0; i--) {
+		Node *node = childrenNode.at(i);
+		MenuItem *item = dynamic_cast<MenuItem *>(node);
+		if(item == NULL) {
+			continue;
+		}
+		
+		Size itemSize = item->getContentSize();
+		// log("menuItem: %f x %f", itemSize.width, itemSize.height);
+		
+		item->setAnchorPoint(Point(0.5, 0));
+		item->setPosition(Point(x, y));
+		
+		// log("menuItem: %f x %f pos: x=%d y=%d", itemSize.width, itemSize.height, x, y);
+		
+		x -= colWidth;
+		maxH = MAX(maxH, itemSize.height);
+		
+		if(x < 0) {
+			totalH += maxH + spacing;
+			y += (maxH + spacing);
+			x = firstX;
+		}
+	}
+	
+	
+	return Size(width, totalH);
+}
+
+void TDDHelper::setLabelColor(Label *label, const Color3B &textColor)
+{
+	label->setColor(textColor);
+	label->setBlendFunc(BlendFunc::ALPHA_PREMULTIPLIED);
+}

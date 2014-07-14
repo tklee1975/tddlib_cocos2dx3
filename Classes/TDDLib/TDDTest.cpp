@@ -79,6 +79,7 @@ namespace {
 TDDTest::TDDTest(bool portrait, bool physics/* = false*/)
 : mTDDMenu(NULL)
 , mControlLayer(NULL)
+, mBackLayer(NULL)
 {
 #ifdef CC_USE_PHYSICS
 	physics = true;
@@ -260,10 +261,23 @@ Menu *TDDTest::createToggleMenu()
 	return menu;
 }
 
+void TDDTest::setBackgroundColor(const Color3B &color)
+{
+	if(mBackLayer) {
+		mBackLayer->setColor(color);
+	}
+	
+}
+
 void TDDTest::setupControlLayer()
 {
 	Size screenSize = TDDHelper::getScreenSize();	// assume the control layer same size as the parent layer
 	
+	// Background Layer
+	mBackLayer = LayerColor::create(Color4B::GRAY, screenSize.width, screenSize.height);
+	addChild(mBackLayer);
+	
+	//
 	Layer *layer = Layer::create();
 	layer->setContentSize(screenSize);
 	

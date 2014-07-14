@@ -108,9 +108,11 @@ TDDTestCase gTestArray[] =
 
 
 ### 5. Adding test code
-* If the unit test is successfully added. you can place your test code inside.
+
+If the unit test is successfully added. you can place your test code inside.
 
 #### 5.1 Using the sub test
+
 
 Every Unit Test is designed to contain many sub tests to be invoked. Just add the sub test method and add the entry in the setSubTest method. 
 
@@ -149,7 +151,8 @@ So, we can setup a custom testing UI at the setUp logic to fit the test environm
     * Tutorial #1: Setup TDDLib
     * Tutorial #2: Very simple unit test
 * Feature: 
-    * Test Filtering in the Test Menu 
+    * Test Filtering in the Test Menu (done)
+    * Beautify the UI
     * More compact subtest menu
     * Remmber the test filtering keyword
     * Clear the current filtering keyword

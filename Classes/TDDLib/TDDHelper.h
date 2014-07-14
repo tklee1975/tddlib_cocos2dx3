@@ -43,7 +43,14 @@ public:
 	static EditBox *createEditBox(Node *parent, Point position, Size size);
 	static void saveFilter(const char *pattern);
 	static const char *getFilter();
-	
+	static const Size alignMenuItem(Menu *menu, int parentWidth,
+						int numCol=3, int lineSpace=0);
+	static MenuItem *createMenuItemWithFont(const char *name, const char *font, const ccMenuCallback& callback);
+	static MenuItem *createMenuItemWithFont(const char *name,
+												const char *font,
+												Color3B color,
+												const ccMenuCallback& callback);
+	static void setLabelColor(Label *label, const Color3B &textColor);
 	// static Layer *createKeyPadLayer(Object *target, Control::Handler handler);
 };
 

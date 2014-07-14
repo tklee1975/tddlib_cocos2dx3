@@ -57,33 +57,25 @@ void TDDMenu::addMenuItems(Vector<MenuItem *> &itemArray)
 	float layerW = mMainLayer->getContentSize().width;
 	
 	Point pos = Point(layerW / 2, layerH - mRowHeight / 2);
-	
+	log("addMenuItems: pos=%f,%f", pos.x, pos.y);
 	int order = 10000;
 	
 	for(int i=0; i<itemArray.size(); i++) {
 		MenuItem *menuItem = itemArray.at(i);
-		if(! menuItem) { continue; }
+		if(! menuItem) {
+			log("addMenuItems: i=%d is null", i);
+			continue;
+		}
 		
+		
+		log("addMenuItems: i=%d pos=%f,%f", i, pos.x, pos.y);
 		menuItem->setPosition(pos);
 		mMenu->addChild(menuItem, order);
 		order++;
 		
 		pos.y -= mRowHeight;
 	}
-	
-	
-//	Ref *child;
-//	CCARRAY_FOREACH(itemArray, child)
-//	{
-//		MenuItem *menuItem = static_cast<MenuItem *>(child);
-//		if(! menuItem) { continue; }
-//
-//		menuItem->setPosition(pos);
-//		mMenu->addChild(menuItem, order);
-//		order++;
-//		
-//		pos.y -= mRowHeight;
-//	}
+
 }
 
 void TDDMenu::setMenuItems(Vector<MenuItem *> &itemArray)
@@ -100,7 +92,7 @@ void TDDMenu::setMenuItems(Vector<MenuItem *> &itemArray)
 	float layerH = MAX(mRowHeight * numMenus, viewH);
 	float layerW = viewW;
 	
-	// log("new layerH=%f viewH=%f", layerH, viewH);
+	log("new layerH=%f viewH=%f", layerH, viewH);
 	
 	// Resize the layer
 	Size newSize = Size(layerW, layerH);
@@ -110,6 +102,47 @@ void TDDMenu::setMenuItems(Vector<MenuItem *> &itemArray)
 	//
 	this->addMenuItems(itemArray);
 	
+	
+	// mMenu->alignItemsVertically();
+	// Scroll to Top
+	TDDHelper::scrollToTop(this);
+}
+
+
+void TDDMenu::setItemsWithColumn(Vector<MenuItem *> &itemArray, int column)
+{
+	// clean up first
+	// mMainLayer->removeAllChildren();
+	mMenu->removeAllChildren();
+	
+	
+	// Add the new menuItem
+	for(int i=0; i<itemArray.size(); i++)
+	{
+		MenuItem *menuItem = itemArray.at(i);
+		if(! menuItem) { continue; }
+		mMenu->addChild(menuItem, i);
+	}
+	
+	float viewH = this->getViewSize().height;
+	float viewW = this->getViewSize().width;
+	
+	Size menuSize = TDDHelper::alignMenuItem(mMenu, viewW, column, 10);
+	
+	
+	// layer
+	float layerH = menuSize.height;	//MAX(menuSize.height, viewH);
+	float layerW = menuSize.width;
+	
+	log("new layerH=%f viewH=%f", layerH, viewH);
+	
+	// Resize the layer
+	Size newSize = Size(layerW, layerH);
+	mMainLayer->setContentSize(newSize);
+	this->setContentSize(newSize);
+	
+	
+	// mMenu->alignItemsVertically();
 	// Scroll to Top
 	TDDHelper::scrollToTop(this);
 }

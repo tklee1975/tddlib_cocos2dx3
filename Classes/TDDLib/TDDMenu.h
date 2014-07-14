@@ -26,6 +26,7 @@ public:
 	~TDDMenu();
 	
 	void setMenuItems(Vector<MenuItem *> &itemArray);
+	void setItemsWithColumn(Vector<MenuItem *> &itemArray, int column=3);
 	
 	// private data
 private:
