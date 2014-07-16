@@ -85,11 +85,13 @@ def do_build(cocos_root, ndk_root, app_android_root,ndk_build_param,sdk_root,and
         command = '%s -j%d -C %s %s' % (ndk_path, num_of_cpu, app_android_root, ndk_module_path)
     else:
         command = '%s -j%d -C %s %s %s' % (ndk_path, num_of_cpu, app_android_root, ''.join(str(e) for e in ndk_build_param), ndk_module_path)
+
     if os.system(command) != 0:
         raise Exception("Build dynamic library for project [ " + app_android_root + " ] fails!")
     elif android_platform is not None:
     	  sdk_tool_path = os.path.join(sdk_root, "tools/android")
     	  cocoslib_path = os.path.join(cocos_root, "cocos/2d/platform/android/java")
+
     	  command = '%s update lib-project -t %s -p %s' % (sdk_tool_path,android_platform,cocoslib_path) 
     	  if os.system(command) != 0:
     	  	  raise Exception("update cocos lib-project [ " + cocoslib_path + " ] fails!")  	  
@@ -133,8 +135,13 @@ def build(ndk_build_param,android_platform,build_mode):
 
     current_dir = os.path.dirname(os.path.realpath(__file__))
     cocos_root = os.path.join(current_dir, "../cocos2d")
+	
+    print 'cocos_root: ' + cocos_root 
 
     app_android_root = current_dir
+
+    #os.system("./list_src.sh")
+
     copy_resources(app_android_root)
     
     if android_platform is not None:
@@ -158,9 +165,12 @@ if __name__ == '__main__':
     parser = OptionParser()
     parser.add_option("-n", "--ndk", dest="ndk_build_param", help='parameter for ndk-build')
     parser.add_option("-p", "--platform", dest="android_platform", 
+
     help='parameter for android-update.Without the parameter,the script just build dynamic library for project. Valid android-platform are:[10|11|12|13|14|15|16|17|18|19]')
     parser.add_option("-b", "--build", dest="build_mode", 
+
     help='the build mode for java project,debug[default] or release.Get more information,please refer to http://developer.android.com/tools/building/building-cmdline.html')
+
     (opts, args) = parser.parse_args()
     
     build(opts.ndk_build_param,opts.android_platform,opts.build_mode)

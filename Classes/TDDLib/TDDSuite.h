@@ -10,7 +10,7 @@
 #define __TDDLib__TTDSuite__
 
 #include "cocos2d.h"
-#include "cocos-ext.h"
+#include "extensions/cocos-ext.h"
 #include <vector>
 
 USING_NS_CC_EXT;

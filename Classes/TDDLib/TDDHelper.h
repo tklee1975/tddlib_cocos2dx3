@@ -10,7 +10,7 @@
 #define __TDDLib__TDDHelper__
 
 #include "cocos2d.h"
-#include "cocos-ext.h"
+#include "extensions/cocos-ext.h"
 #include "TDDTypes.h"
 #include <string>
 #include <vector>

@@ -42,6 +42,11 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>COCOSLIB_ANDROID_SRC</name>
+			<type>2</type>
+			<locationURI>COCOSLIB_ANDROID_SRC</locationURI>
+		</link>
+		<link>
 			<name>Classes</name>
 			<type>2</type>
 			<locationURI>COCOS2DX/projects/Cocos2dxTDDLib/Classes</locationURI>
@@ -62,4 +67,10 @@
 			<locationURI>COCOS2DX/scripting</locationURI>
 		</link>
 	</linkedResources>
+	<variableList>
+		<variable>
+			<name>COCOSLIB_ANDROID_SRC</name>
+			<value>file:/workspace/ccx3/engine/cocos/2d/platform/android/java/src</value>
+		</variable>
+	</variableList>
 </projectDescription>

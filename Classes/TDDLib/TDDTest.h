@@ -13,7 +13,7 @@
 #define __TDDLib__TDDTest__
 
 #include "cocos2d.h"
-#include "cocos-ext.h"
+#include "extensions/cocos-ext.h"
 
 #include "TDDTypes.h"
 
