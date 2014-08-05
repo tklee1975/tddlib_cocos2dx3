@@ -86,9 +86,13 @@ TDDSuiteLayer::TDDSuiteLayer()
 {
 	LayerColor *bgLayer = LayerColor::create(Color4B::WHITE, 800, 400);
 	addChild(bgLayer);
-	
-	setupTestMenu();
+
+	// Top bar with: back, filter and all/history
 	setupToolBar();
+	
+	// Menu
+	setupTestMenu();
+
 	
 	
 }

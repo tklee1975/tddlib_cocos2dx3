@@ -311,3 +311,17 @@ void TDDHelper::setLabelColor(Label *label, const Color3B &textColor)
 	label->setColor(textColor);
 	label->setBlendFunc(BlendFunc::ALPHA_PREMULTIPLIED);
 }
+
+void TDDHelper::setAlphaPremultiplied(Node *node)
+{
+	if(node == NULL) {
+		return;
+	}
+	
+	BlendProtocol *ptr = dynamic_cast<BlendProtocol *>(node);
+	if(ptr == NULL) {
+		return;
+	}
+	
+	ptr->setBlendFunc(BlendFunc::ALPHA_PREMULTIPLIED);
+}

@@ -30,6 +30,7 @@ void ButtonTest::setSubTest(Vector<MenuItem *> &menuArray)
 	SUBTEST(ButtonTest::testMenuLayout);
 	SUBTEST(ButtonTest::testMenuStyle);
 	SUBTEST(ButtonTest::testAlighColumn);
+	SUBTEST(ButtonTest::testControlButton);
 }
 
 void ButtonTest::onMenuSelected(Ref *sender)
@@ -262,6 +263,62 @@ void ButtonTest::testAlignItemsWithScroll(Ref *sender)
 	log("menuSize: %f x %f", menuSize.width, menuSize.height);
 }
 
+void ButtonTest::testControlButton(Ref *sender)
+{
+	log("Testing controlButton");
+	
+	Point buttonPos = Point(50, 200);
 
+	Scale9Sprite *bgButton = Scale9Sprite::create();
+	// bgButton->addChild(LayerColor::create(Color4B::WHITE, 80, 30));
+	
+	Scale9Sprite *bgHiliButton = Scale9Sprite::create();
+	Scale9Sprite *bgSelected = Scale9Sprite::create();
+	
+	// bgButton->setContentSize(Size(200, 50));
+	Label *titleButton = Label::createWithSystemFont("test", "arial", 15);
+	titleButton->setColor(Color3B::BLUE);
+
+	ControlButton *button = ControlButton::create(titleButton, bgButton);
+	button->setBackgroundSpriteForState(bgHiliButton, Control::State::HIGH_LIGHTED);
+	button->setTitleColorForState(Color3B::WHITE, Control::State::HIGH_LIGHTED);
+	button->setBackgroundSpriteForState(bgSelected, Control::State::SELECTED);
+	button->setTitleColorForState(Color3B::RED, Control::State::SELECTED);
+	
+	
+	
+	// ((Label *)button->getTitleLabel())->setBlendFunc(BlendFunc::ALPHA_PREMULTIPLIED);
+	TDDHelper::setAlphaPremultiplied(button->getTitleLabel());
+
+	button->setContentSize(Size(80, 30));
+	button->setPosition(buttonPos);
+	button->addTargetWithActionForControlEvents(this,
+				cccontrol_selector(ButtonTest::touchUpInsideAction), Control::EventType::TOUCH_UP_INSIDE);
+	
+	addChild(button);
+	
+	button->setSelected(false);
+	
+	
+	LayerColor *hotspot = LayerColor::create(Color4B::RED, 4, 4);
+	hotspot->setPosition(Point(buttonPos.x - 2, buttonPos.y - 2));
+	addChild(hotspot);
+}
+
+void ButtonTest::touchUpInsideAction(Ref *sender, Control::EventType controlEvent)
+{
+	ControlButton *button = (ControlButton *)sender;
+	
+	log("Button is clicked");
+	if(button->isSelected()) {
+		button->setHighlighted(false);
+		button->setSelected(false);
+	} else {
+		button->setSelected(true);
+		button->setHighlighted(true);
+	}
+	// button->setColor(Color3B::RED);
+   //  _displayValueLabel->setString(String::createWithFormat("Touch Up Inside.")->getCString());
+}
 
 #endif

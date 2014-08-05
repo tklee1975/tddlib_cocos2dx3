@@ -51,6 +51,9 @@ public:
 												Color3B color,
 												const ccMenuCallback& callback);
 	static void setLabelColor(Label *label, const Color3B &textColor);
+	
+	static void setAlphaPremultiplied(Node *node);
+	
 	// static Layer *createKeyPadLayer(Object *target, Control::Handler handler);
 };
 

@@ -29,6 +29,9 @@ private:
 	void testAlighColumn(Ref *sender);
 	void testAlignItems(Ref *sender);
 	void testAlignItemsWithScroll(Ref *sender);
+	void testControlButton(Ref *sender);
+	
+	void touchUpInsideAction(Ref *sender, Control::EventType controlEvent);
 }; 
 
 #endif

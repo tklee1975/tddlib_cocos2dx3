@@ -62,6 +62,7 @@
 		50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 50EF629517ECD46A001EB2F8 /* Icon-100.png */; };
 		50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 50EF62A017ECD613001EB2F8 /* Icon-29.png */; };
 		50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 50EF62A117ECD613001EB2F8 /* Icon-50.png */; };
+		73590E34198FFD7E0025BB96 /* SwitchTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73590E32198FFD7E0025BB96 /* SwitchTest.cpp */; };
 		738B66FE194E7ED200312D20 /* EditBoxTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738B66FC194E7ED200312D20 /* EditBoxTest.cpp */; };
 		738B6701194E7ED600312D20 /* EditBoxTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738B66FC194E7ED200312D20 /* EditBoxTest.cpp */; };
 		738B6702194E7EDA00312D20 /* LabelTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 739F7CCA194A8F720065CD2E /* LabelTest.cpp */; };
@@ -284,6 +285,8 @@
 		50EF629517ECD46A001EB2F8 /* Icon-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-100.png"; sourceTree = "<group>"; };
 		50EF62A017ECD613001EB2F8 /* Icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29.png"; sourceTree = "<group>"; };
 		50EF62A117ECD613001EB2F8 /* Icon-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-50.png"; sourceTree = "<group>"; };
+		73590E32198FFD7E0025BB96 /* SwitchTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SwitchTest.cpp; sourceTree = "<group>"; };
+		73590E33198FFD7E0025BB96 /* SwitchTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchTest.h; sourceTree = "<group>"; };
 		738B66FC194E7ED200312D20 /* EditBoxTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EditBoxTest.cpp; sourceTree = "<group>"; };
 		738B66FD194E7ED200312D20 /* EditBoxTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditBoxTest.h; sourceTree = "<group>"; };
 		73943954192BBE06009761FA /* TDDTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TDDTest.cpp; path = ../Classes/TDDLib/TDDTest.cpp; sourceTree = "<group>"; };
@@ -536,6 +539,8 @@
 		7394396F192BC7C3009761FA /* UnitTest */ = {
 			isa = PBXGroup;
 			children = (
+				73590E32198FFD7E0025BB96 /* SwitchTest.cpp */,
+				73590E33198FFD7E0025BB96 /* SwitchTest.h */,
 				73FDCDF7195C7915005D8E65 /* ScrollTest.cpp */,
 				73FDCDF8195C7915005D8E65 /* ScrollTest.h */,
 				73A1E3C11953C5EA00165941 /* ButtonTest.cpp */,
@@ -784,6 +789,7 @@
 				7394396D192BBE06009761FA /* TDDSuite.cpp in Sources */,
 				73943972192BC7C3009761FA /* ExampleTest.cpp in Sources */,
 				73A1E3C31953C5EA00165941 /* ButtonTest.cpp in Sources */,
+				73590E34198FFD7E0025BB96 /* SwitchTest.cpp in Sources */,
 				739F7CCC194A8F720065CD2E /* LabelTest.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				73943969192BBE06009761FA /* TDDMenuTest.cpp in Sources */,
