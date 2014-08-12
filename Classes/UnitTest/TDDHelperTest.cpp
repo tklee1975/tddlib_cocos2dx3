@@ -26,7 +26,10 @@ void TDDHelperTest::tearDown()
 
 void TDDHelperTest::setSubTest(Vector<MenuItem *> &menuArray)
 {
+	SUBTEST(TDDHelperTest::testCreateLabel);
+	SUBTEST(TDDHelperTest::testReplaceString);
 	SUBTEST(TDDHelperTest::testColor);
+	SUBTEST(TDDHelperTest::testTrimString);
 	SUBTEST(TDDHelperTest::testMenuItemFont);
 	SUBTEST(TDDHelperTest::testAlignMenuItem);
 	SUBTEST(TDDHelperTest::testCreateEditBox);
@@ -178,6 +181,49 @@ void TDDHelperTest::testColor(Ref *sender)
 		
 		x += width;
 	}
+}
+
+
+void TDDHelperTest::testTrimString(Ref *sender)
+{
+	const char *input = " text with space ";
+	
+	std::string result = TDDHelper::trimString(input);
+
+	log("input=[%s]", input);
+	log("result=[%s]", result.c_str());
+}
+
+void TDDHelperTest::testReplaceString(Ref *sender)
+{
+	std::string input = "HelloTest";
+	
+	std::string result = TDDHelper::replaceString(input, "Test", "");
+	
+	log("input=[%s]", input.c_str());
+	log("result=[%s]", result.c_str());
+}
+
+void TDDHelperTest::testCreateLabel(Ref *sender)
+{
+	int startSize = 20;
+	int endSize = 50;
+	int step = 5;
+	int spacing = 50;
+	
+	Point pos = Point(200, 30);
+	
+	for(int fontSize=startSize; fontSize <= endSize; fontSize +=step) {
+		Label *label = TDDHelper::createLabel("Testing", fontSize, Color3B::WHITE);
+		
+		label->setPosition(pos);
+		
+		addChild(label);
+		
+		pos.y += spacing;
+	}
+	
+	
 }
 
 #endif

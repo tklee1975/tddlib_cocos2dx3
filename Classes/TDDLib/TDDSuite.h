@@ -51,6 +51,9 @@ private:
     Point mBeginPos;
 	TDDMenu *mTestMenu;
 	EditBox *mEditFilter;
+	int mFilterCount;
+	Label *mStatusLeftLabel;
+	
 	
 #pragma mark -
 #pragma mark Private Method
@@ -61,12 +64,20 @@ private:
 	Layer *createToolBarLayer();	// Tool Bar
 	void createMenuItemArray(const std::vector<int> &testIndices, Vector<MenuItem *> &menuArray);
 	
+	Layer *createStatusBarLayer();
+	void setupStatusBar();
+	void updateStatusBar();
+	
 	// public cocos2d::extension::EditBoxDelegate
     virtual void editBoxTextChanged(cocos2d::extension::EditBox* editBox, const std::string& text);
 	virtual void editBoxEditingDidBegin(cocos2d::extension::EditBox* editBox);
     virtual void editBoxEditingDidEnd(cocos2d::extension::EditBox* editBox);
     virtual void editBoxReturn(cocos2d::extension::EditBox* editBox);
 
+	void switchSelected(Ref *sender, std::string name, int selected);
+	
+	int getTotalTestCount();
+	int getFilteredTestCount();
 };
 
 

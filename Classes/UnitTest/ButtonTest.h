@@ -30,7 +30,9 @@ private:
 	void testAlignItems(Ref *sender);
 	void testAlignItemsWithScroll(Ref *sender);
 	void testControlButton(Ref *sender);
+	void testButtonColor(Ref *sender);
 	
+	void setButtonSelected(Ref *sender, Control::EventType controlEvent);
 	void touchUpInsideAction(Ref *sender, Control::EventType controlEvent);
 }; 
 

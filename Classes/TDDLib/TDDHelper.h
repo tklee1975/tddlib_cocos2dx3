@@ -53,7 +53,15 @@ public:
 	static void setLabelColor(Label *label, const Color3B &textColor);
 	
 	static void setAlphaPremultiplied(Node *node);
+
+	static std::string trimString(const std::string &input);
 	
+	static std::string replaceString(const std::string &src,
+										 const std::string &find,
+										 const std::string &replacement);
+	
+	static Label *createLabel(const std::string &text,
+								const int fontSize, const Color3B &color);
 	// static Layer *createKeyPadLayer(Object *target, Control::Handler handler);
 };
 

@@ -25,11 +25,13 @@ void ButtonTest::tearDown()
 
 void ButtonTest::setSubTest(Vector<MenuItem *> &menuArray)
 {
+	SUBTEST(ButtonTest::testButtonColor);
 	SUBTEST(ButtonTest::testAlignItemsWithScroll);
 	SUBTEST(ButtonTest::testAlignItems);
 	SUBTEST(ButtonTest::testMenuLayout);
 	SUBTEST(ButtonTest::testMenuStyle);
 	SUBTEST(ButtonTest::testAlighColumn);
+	SUBTEST(ButtonTest::testButtonColor);
 	SUBTEST(ButtonTest::testControlButton);
 }
 
@@ -321,4 +323,62 @@ void ButtonTest::touchUpInsideAction(Ref *sender, Control::EventType controlEven
    //  _displayValueLabel->setString(String::createWithFormat("Touch Up Inside.")->getCString());
 }
 
+void ButtonTest::setButtonSelected(Ref *sender, Control::EventType controlEvent)
+{
+	ControlButton *button = (ControlButton *)sender;
+	button->setHighlighted(false);
+	
+	if(button->isSelected()) {
+		button->setSelected(false);
+	} else {
+		button->setSelected(true);
+	}
+	
+	if(button->isSelected()) {
+		button->setTitleColorForState(Color3B::RED, Control::State::NORMAL);
+	} else {
+		button->setTitleColorForState(Color3B::WHITE, Control::State::NORMAL);
+	}
+}
+
+
+void ButtonTest::testButtonColor(Ref *sender)
+{
+	log("Testing testButtonColor");
+	
+	Point buttonPos = Point(50, 200);
+	
+	Scale9Sprite *bgButton = Scale9Sprite::create();
+	Scale9Sprite *bgHiliButton = Scale9Sprite::create();
+	Scale9Sprite *bgSelected = Scale9Sprite::create();
+	
+	// bgButton->setContentSize(Size(200, 50));
+	Label *titleButton = Label::createWithSystemFont("test", "arial", 20);
+
+	titleButton->setColor(Color3B::WHITE);
+	
+	ControlButton *button = ControlButton::create(titleButton, bgButton);
+	button->setTitleColorForState(Color3B::WHITE, Control::State::NORMAL);
+	
+	button->setBackgroundSpriteForState(bgHiliButton, Control::State::HIGH_LIGHTED);
+	button->setTitleColorForState(Color3B::BLUE, Control::State::HIGH_LIGHTED);
+	
+	button->setBackgroundSpriteForState(bgSelected, Control::State::SELECTED);
+	button->setTitleColorForState(Color3B::RED, Control::State::SELECTED);
+	
+	
+	
+	// ((Label *)button->getTitleLabel())->setBlendFunc(BlendFunc::ALPHA_PREMULTIPLIED);
+	TDDHelper::setAlphaPremultiplied(button->getTitleLabel());
+	
+	button->setContentSize(Size(80, 30));
+	button->setPosition(buttonPos);
+	button->addTargetWithActionForControlEvents(this,
+								cccontrol_selector(ButtonTest::setButtonSelected),
+								Control::EventType::TOUCH_UP_INSIDE);
+	
+	addChild(button);
+	
+	button->setSelected(false);
+}
 #endif

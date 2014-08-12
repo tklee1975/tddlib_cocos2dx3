@@ -25,6 +25,9 @@ private:
 	void testAlignMenuItem(Ref *sender);
 	void testMenuItemFont(Ref *sender);
 	void testColor(Ref *sender);
+	void testTrimString(Ref *sender);
+	void testReplaceString(Ref *sender);
+	void testCreateLabel(Ref *sender);
 }; 
 
 #endif

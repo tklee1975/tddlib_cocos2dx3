@@ -38,7 +38,7 @@ enum TDDAlign
 
 #define kDefaultFont				"Arial"
 #define kDefaultFontSize			20
-#define kDefaultToolbarHeight		35
+#define kDefaultToolbarHeight		44
 #define kDefaultMenuRowHeight		35
 
 #endif

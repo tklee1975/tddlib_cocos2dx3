@@ -18,6 +18,9 @@
 #include "ScrollTest.h"
 #include "TDDMenuTest.h"
 #include "SwitchTest.h"
+#include "TDDSwitchTest.h"
+#include "TDDSuiteLayerTest.h"
+
 //#include#
 // NOTE!!! The above line is used to generate new unit test, must not be removed.
 
@@ -25,6 +28,8 @@
 TDD_CASES
 {
 	TEST(TDDMenuTest),
+	TEST(TDDSuiteLayerTest),
+	TEST(TDDSwitchTest),
 	TEST(TDDSample1),
 	TEST(SwitchTest),
 	TEST(ButtonTest),

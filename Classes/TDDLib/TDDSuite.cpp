@@ -14,16 +14,24 @@
 #include "TDDHelper.h"
 #include "TDDMenu.h"
 #include "TDDConstant.h"
+#include "TDDSwitch.h"
 
 static int gTestCount = sizeof(gTestArray) / sizeof(gTestArray[0]);
 
 #define kTestZOrder			10000
 #define kLineHeight			kDefaultMenuRowHeight
 #define kToolBarHeight		kDefaultToolbarHeight
+#define kStatusBarHeight	30
+#define kStatusBarFontSize	15
 
 //#define kColorTestMenu		Color4B(50, 50, 100, 255)
-#define kColorTestMenu		Color4B(255, 255, 255, 255)
+#define kColorTestMenu		Color4B(255, 255, 255, 0)
 #define kColorToolBar		Color4B(TDD_COLOR_BLUE2)
+
+#define kColorSwitchBg				Color4B(TDD_COLOR_WHITE)
+#define kColorSwitch				Color4B(TDD_COLOR_BLUE2)
+#define kColorSwitchOnText			TDD_COLOR_WHITE
+#define kColorSwitchOffText			TDD_COLOR_GRAY
 
 #pragma mark -
 #pragma mark Local Function
@@ -34,7 +42,11 @@ namespace {
 			return true;
 		}
 		
-		return strcasestr(name, filterPattern) != NULL;
+		std::string modifyName = TDDHelper::replaceString(name, "Test", "");
+		
+
+		
+		return strcasestr(modifyName.c_str(), filterPattern) != NULL;
 	}
 }
 
@@ -83,8 +95,10 @@ void TDDSuiteScene::onExit()
 
 TDDSuiteLayer::TDDSuiteLayer()
 : mEditFilter(NULL)
+, mStatusLeftLabel(NULL)
+, mFilterCount(0)
 {
-	LayerColor *bgLayer = LayerColor::create(Color4B::WHITE, 800, 400);
+	LayerColor *bgLayer = LayerColor::create(Color4B(TDD_COLOR_WHITE2), 800, 400);
 	addChild(bgLayer);
 
 	// Top bar with: back, filter and all/history
@@ -94,7 +108,8 @@ TDDSuiteLayer::TDDSuiteLayer()
 	setupTestMenu();
 
 	
-	
+	// Status
+	setupStatusBar();
 }
 
 TDDSuiteLayer::~TDDSuiteLayer()
@@ -115,50 +130,94 @@ void TDDSuiteLayer::filterTest(Ref * sender)
 	
 	const char *pattern = (mEditFilter == NULL) ? "" : mEditFilter->getText();
 	
-	TDDHelper::saveFilter(pattern);
+	std::string trimPattern = TDDHelper::trimString(pattern);
+	
+	TDDHelper::saveFilter(trimPattern.c_str());
 	
 	// Director::getInstance()->popToRootScene();
 	refreshTestMenu();
+	
+	
+	updateStatusBar();
 }
 
 
-
+// Tool bar constains the following elements
+//	Back button
+//	Filter Input
+//	Switch
 Layer *TDDSuiteLayer::createToolBarLayer()
 {
 	Size screenSize = TDDHelper::getScreenSize();
 	int midY = kToolBarHeight/2;
-	int inputW = 140;
+	
+	
+	int backX = 50;
+	
+	int inputW = 200;
+	int inputH = kToolBarHeight - 10;
+	int inputX = inputW / 2 + backX + 50;
+	
+	
+	int switchW = 170;
+	int switchY = 5;
+	int switchX = screenSize.width - switchW - 20;
+	int switchH = kToolBarHeight - switchY * 2;
+	
+	
 	int menuW = 70;
 	
-	int backX = 40;
-	
-	int findX  = screenSize.width - menuW/2;
-	int inputH = kToolBarHeight - 10;
-	int inputX = findX - 10 - menuW / 2  - inputW / 2;
 	
 	
 	
-	
+	// Layer containter
 	LayerColor *menuLayer = LayerColor::create(kColorToolBar, screenSize.width, kToolBarHeight);
 	
+	
+	// Back Button
 	Menu *menuBack = TDDHelper::createMenu(Point(backX, midY), "Back",
 										   CC_CALLBACK_1(TDDSuiteLayer::goBack, this));
 	
 	menuLayer->addChild(menuBack);
 	
 	
+	// Filter Input
 	
 	mEditFilter = TDDHelper::createEditBox(menuLayer, Point(inputX, midY), Size(inputW, inputH));
 	mEditFilter->setText(TDDHelper::getFilter());
+	mEditFilter->setPlaceHolder("Testcase Filter");
 	mEditFilter->setDelegate(this);
 	
-	Menu *menuFind = TDDHelper::createMenu(Point(findX, midY), "Find",
-										   CC_CALLBACK_1(TDDSuiteLayer::filterTest, this));
+//	Menu *menuFind = TDDHelper::createMenu(Point(findX, midY), "Find",
+//										   CC_CALLBACK_1(TDDSuiteLayer::filterTest, this));
+//	menuLayer->addChild(menuFind);
+
+	// Switch
+	TDDSwitch *switchControl = new TDDSwitch(Size(switchW, switchH),
+											 kColorSwitchBg, kColorSwitch,
+											 kColorSwitchOffText, kColorSwitchOnText,
+											 TDD_FONT_NAME, TDD_FONT_SIZE1);
 	
-	menuLayer->addChild(menuFind);
+	switchControl->setPosition(Point(switchX, switchY));
+	
+	menuLayer->addChild(switchControl);
+	
+	std::vector<std::string> switches;
+	switches.push_back("all");
+	switches.push_back("history");
+	
+	switchControl->setSwitches(switches, CC_CALLBACK_3(TDDSuiteLayer::switchSelected, this));
+	
 	
 	return menuLayer;
 }
+
+
+void TDDSuiteLayer::switchSelected(Ref *sender, std::string name, int selected)
+{
+	log("selected switch: %s (%d)", name.c_str(), selected);
+}
+
 
 void TDDSuiteLayer::setupToolBar()
 {
@@ -167,6 +226,64 @@ void TDDSuiteLayer::setupToolBar()
 	toolBar->setPosition(Director::getInstance()->convertToGL(pos));
 	this->addChild(toolBar);
 }
+
+
+
+Layer *TDDSuiteLayer::createStatusBarLayer()
+{
+	Size screenSize = TDDHelper::getScreenSize();
+	int midY = kStatusBarHeight/2;
+	int margin = 10;
+	Point leftAnchor = Point(0, 0.5);
+	Point rightAnchor = Point(1, 0.5);
+	
+
+	// Layer containter
+	LayerColor *layer = LayerColor::create(kColorToolBar, screenSize.width, kStatusBarHeight);
+	
+	//
+	Label *leftLabel = TDDHelper::createLabel("Left", kStatusBarFontSize, Color3B::WHITE);
+	leftLabel->setAnchorPoint(leftAnchor);
+	leftLabel->setPosition(Point(margin, midY));
+	layer->addChild(leftLabel);
+	mStatusLeftLabel = leftLabel;
+	
+	Label *rightLabel = TDDHelper::createLabel("Right", kStatusBarFontSize, Color3B::WHITE);
+	rightLabel->setAnchorPoint(rightAnchor);
+	rightLabel->setPosition(Point(screenSize.width - margin, midY));
+	layer->addChild(rightLabel);
+	
+	// Setting Right Label
+	char text[200];
+	sprintf(text, "%s %s (%d)", APP_NAME, VERSION, BUILD);
+	rightLabel->setString(text);
+
+	return layer;
+}
+
+void TDDSuiteLayer::updateStatusBar()
+{
+	if(mStatusLeftLabel == NULL) {
+		return;
+	}
+	
+	// Setting Left Label
+	char text[200];
+	
+	sprintf(text, "Total: %d  Filtered: %d", getTotalTestCount(), getFilteredTestCount());
+	mStatusLeftLabel->setString(text);
+	
+}
+
+void TDDSuiteLayer::setupStatusBar()
+{
+	Point pos = Point(0, 0);
+	Layer *bar = createStatusBarLayer();
+	bar->setPosition(pos);
+	this->addChild(bar);
+}
+
+
 
 void TDDSuiteLayer::setupTestMenu()
 {
@@ -202,7 +319,8 @@ void TDDSuiteLayer::createMenuItemArray(const std::vector<int> &testIndices, Vec
 		const char *name = gTestArray[index].name;
 		
 		//menuItem = TDDHelper::createMenuItem(name, CC_CALLBACK_1(TDDSuiteLayer::menuCallback, this));
-		menuItem = TDDHelper::createMenuItemWithFont(name, "GillSans", CC_CALLBACK_1(TDDSuiteLayer::menuCallback, this));
+		menuItem = TDDHelper::createMenuItemWithFont(name, TDD_FONT_NAME,
+										CC_CALLBACK_1(TDDSuiteLayer::menuCallback, this));
 		menuItem->setTag(index);	// this must be the index of the test in the gTestArray
 		
 		menuArray.pushBack(menuItem);
@@ -222,6 +340,7 @@ void TDDSuiteLayer::refreshTestMenu()
 	for (int i = 0; i < gTestCount; i++)
 	{
 		const char *name = gTestArray[i].name;
+		
 		if(passFilter(name, filterPattern) == false) {
 			continue;
 		}
@@ -231,8 +350,13 @@ void TDDSuiteLayer::refreshTestMenu()
 	
 	createMenuItemArray(selectedIndices, menuArray);
 	
+	mFilterCount = (int) selectedIndices.size();
+	
 	// mTestMenu->setMenuItems(menuArray);
 	mTestMenu->setItemsWithColumn(menuArray);
+	
+	// update filter count
+	updateStatusBar();
 }
 
 #pragma mark -
@@ -289,6 +413,15 @@ void TDDSuiteLayer::menuCallback(Ref * sender)
 	
 }
 
+int TDDSuiteLayer::getTotalTestCount()
+{
+	return gTestCount;
+}
+
+int TDDSuiteLayer::getFilteredTestCount()
+{
+	return mFilterCount;
+}
 
 
 #endif

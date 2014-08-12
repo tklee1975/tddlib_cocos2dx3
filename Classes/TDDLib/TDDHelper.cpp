@@ -325,3 +325,53 @@ void TDDHelper::setAlphaPremultiplied(Node *node)
 	
 	ptr->setBlendFunc(BlendFunc::ALPHA_PREMULTIPLIED);
 }
+
+std::string TDDHelper::trimString(const std::string &input)
+{
+	int first = 0;
+	unsigned long last = input.size() - 1;
+	
+	while (first <= last && isspace(input[first])) { first++; }
+	while (last >= first && isspace(input[last])) { last--; }
+	
+	return input.substr(first, (last - first + 1));
+}
+
+std::string TDDHelper::replaceString(const std::string &src,
+									 const std::string &find,
+									 const std::string &replacement)
+{
+    int i = 0;
+    unsigned long len = find.length();
+    
+    if (len == 0) {
+        return src;
+    }
+    
+    string result;
+    while(true)
+    {
+        int start = i;
+        i = (int) src.find(find, i);
+        
+        if(i < 0)
+        {
+            result += src.substr(start);
+            break;
+        }
+        result += src.substr(start, i - start);
+        result += replacement;
+        i += len;
+    }
+	
+    return result;
+}
+
+Label *TDDHelper::createLabel(const std::string &text, const int fontSize, const Color3B &color)
+{
+	Label *label = Label::createWithSystemFont(text, kDefaultFont, fontSize);
+
+	setLabelColor(label, color);
+
+	return label;
+}

@@ -9,6 +9,10 @@
 #ifndef Cocos2dxTDDLib_TDDConstant_h
 #define Cocos2dxTDDLib_TDDConstant_h
 
+#define APP_NAME		"tddccx3"
+#define VERSION			"1.0.0"
+#define BUILD			1
+
 #define TDD_FONT_NAME	"GillSans"
 #define TDD_FONT_SIZE1	20
 #define TDD_FONT_SIZE2	15
@@ -25,6 +29,7 @@ const static Color3B TDD_COLOR_BLUE1(77, 188, 233);
 const static Color3B TDD_COLOR_BLUE2(38, 173, 228);
 const static Color3B TDD_COLOR_BLACK(0, 0, 0);
 const static Color3B TDD_COLOR_WHITE(255, 255, 255);
+const static Color3B TDD_COLOR_WHITE2(245, 245, 245);
 
 const static Color4B TDD_COLOR4_TRANS_BLUE(0, 171, 223, 127);
 const static Color4B TDD_COLOR4_TRANS_BLACK(0, 0, 0, 127);
