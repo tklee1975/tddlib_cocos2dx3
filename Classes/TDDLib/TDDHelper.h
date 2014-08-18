@@ -60,9 +60,20 @@ public:
 										 const std::string &find,
 										 const std::string &replacement);
 	
+	static std::vector<std::string> splitString(const std::string& text,
+										   const char delim, const int numToken);
+	
+	static std::string joinString(const std::vector<std::string> &strArray,
+											const std::string &sep);
+	
 	static Label *createLabel(const std::string &text,
 								const int fontSize, const Color3B &color);
 	// static Layer *createKeyPadLayer(Object *target, Control::Handler handler);
+
+
+	#pragma mark - Save/Load Data
+	static void saveStringToDevice(const std::string &key, const std::string &content);
+	static std::string loadStringFromDevice(const std::string &key);
 };
 
 #endif /* defined(__Dg__TDDHelper__) */

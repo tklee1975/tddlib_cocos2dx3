@@ -26,6 +26,8 @@ void TDDHelperTest::tearDown()
 
 void TDDHelperTest::setSubTest(Vector<MenuItem *> &menuArray)
 {
+	SUBTEST(TDDHelperTest::testJoinString);
+	SUBTEST(TDDHelperTest::testSplitString);
 	SUBTEST(TDDHelperTest::testCreateLabel);
 	SUBTEST(TDDHelperTest::testReplaceString);
 	SUBTEST(TDDHelperTest::testColor);
@@ -222,7 +224,29 @@ void TDDHelperTest::testCreateLabel(Ref *sender)
 		
 		pos.y += spacing;
 	}
+}
+
+void TDDHelperTest::testSplitString(Ref *sender)
+{
+	std::vector<std::string> result = TDDHelper::splitString("aaa\nbbb\nccc\n", '\n', 0);
 	
+	for(int i=0; i<result.size(); i++) {
+		log("i=%d str=%s", i, result[i].c_str());
+	}
+}
+
+void TDDHelperTest::testJoinString(Ref *sender)
+{
+	std::vector<std::string> strArray;
+	
+	strArray.push_back("Hello");
+	strArray.push_back("ABC");
+	strArray.push_back("Cat");
+	
+	std::string result = TDDHelper::joinString(strArray, " ");
+	
+	log("result=[%s]\n", result.c_str());
+//	stt
 	
 }
 

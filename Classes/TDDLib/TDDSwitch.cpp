@@ -63,6 +63,7 @@ TDDSwitch::TDDSwitch(const Size &size,
 , mOnTextColor(onTextColor)
 , mFont(font)
 , mFontSize(fontSize)
+, mEnableCallback(false)
 {
 	TDDSwitch::initWithColor(bgColor, size.width, size.height);
 	
@@ -186,7 +187,7 @@ void TDDSwitch::setSwitchSelected(int index)
 	moveSwitchBg(mSelected);
 	
 	
-	if(doCallback && mCallback)
+	if(mEnableCallback && doCallback && mCallback)
 	{
 		std::string name = getName(mSelected);
 		mCallback(this, name, mSelected);
@@ -221,7 +222,8 @@ void TDDSwitch::setupSwitchBg(int count)
 	mSwitchBg = switchButtonBg;
 }
 
-void TDDSwitch::setSwitches(std::vector<std::string> switches, const tddSwitchCallback& callback)
+void TDDSwitch::setSwitches(std::vector<std::string> switches,
+							const tddSwitchCallback& callback, int defaultSelection)
 {
 	Point pos = Point(kMargin, kMargin);
 	
@@ -251,7 +253,9 @@ void TDDSwitch::setSwitches(std::vector<std::string> switches, const tddSwitchCa
 	}
 	
 	// Set Active
-	setSwitchSelected(0);
+	setSwitchSelected(defaultSelection);
+	
+	mEnableCallback = true;
 }
 
 

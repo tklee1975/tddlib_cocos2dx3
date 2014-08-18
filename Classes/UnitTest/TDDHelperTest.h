@@ -28,6 +28,8 @@ private:
 	void testTrimString(Ref *sender);
 	void testReplaceString(Ref *sender);
 	void testCreateLabel(Ref *sender);
+	void testSplitString(Ref *sender);
+	void testJoinString(Ref *sender);
 }; 
 
 #endif

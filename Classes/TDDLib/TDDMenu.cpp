@@ -20,6 +20,7 @@
 #include "TDDHelper.h"
 
 TDDMenu::TDDMenu(Size size, Color4B color, float rowHeight)
+: mMenu(NULL)
 {
 	// Data Array to keep the menuItem
 	//
@@ -80,6 +81,10 @@ void TDDMenu::addMenuItems(Vector<MenuItem *> &itemArray)
 
 void TDDMenu::setMenuItems(Vector<MenuItem *> &itemArray)
 {
+	if(mMenu == NULL) {
+		log("setMenuItem: error. mMenu is NULL");
+		return;
+	}
 	// clean up first
 	// mMainLayer->removeAllChildren();
 	mMenu->removeAllChildren();

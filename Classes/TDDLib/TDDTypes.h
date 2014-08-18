@@ -35,6 +35,11 @@ enum TDDAlign
 //	eTDDBottomRight,
 };
 
+enum TDDMenuMode {
+	TDDMenuModeAll = 0,
+	TDDMenuModeHistory = 1,
+};
+
 
 #define kDefaultFont				"Arial"
 #define kDefaultFontSize			20

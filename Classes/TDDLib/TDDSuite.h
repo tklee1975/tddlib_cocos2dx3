@@ -12,6 +12,7 @@
 #include "cocos2d.h"
 #include "extensions/cocos-ext.h"
 #include <vector>
+#include <string>
 
 USING_NS_CC_EXT;
 
@@ -53,6 +54,7 @@ private:
 	EditBox *mEditFilter;
 	int mFilterCount;
 	Label *mStatusLeftLabel;
+	std::vector<std::string> mDisplayTest;
 	
 	
 #pragma mark -
@@ -63,7 +65,8 @@ private:
 	const char *getFilterName();
 	Layer *createToolBarLayer();	// Tool Bar
 	void createMenuItemArray(const std::vector<int> &testIndices, Vector<MenuItem *> &menuArray);
-	
+	void createTestMenuItemArray(const std::vector<std::string> &testNames,
+												Vector<MenuItem *> &menuArray);
 	Layer *createStatusBarLayer();
 	void setupStatusBar();
 	void updateStatusBar();
@@ -75,6 +78,12 @@ private:
     virtual void editBoxReturn(cocos2d::extension::EditBox* editBox);
 
 	void switchSelected(Ref *sender, std::string name, int selected);
+	
+	void setDisplayTestWithFilter();
+	void setDisplayTestWithFilter(const std::string &filter);
+	void setDisplayTestWithHistory();
+	int getTestIndexByName(const std::string &name);
+	std::string getDisplayTestNameByIndex(int index);
 	
 	int getTotalTestCount();
 	int getFilteredTestCount();

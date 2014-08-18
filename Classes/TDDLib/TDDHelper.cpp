@@ -188,6 +188,20 @@ Point TDDHelper::getCenter(Size &parentSize, Size &nodeSize)
 	return Point(x, y);
 }
 
+#pragma mark - User Default
+void TDDHelper::saveStringToDevice(const std::string &key, const std::string &content)
+{
+	CCUserDefault::getInstance()->setStringForKey(key.c_str(), content);
+	
+	CCUserDefault::getInstance()->flush();
+}
+
+std::string TDDHelper::loadStringFromDevice(const std::string &key)
+{
+	return CCUserDefault::getInstance()->getStringForKey(key.c_str());
+}
+
+
 void TDDHelper::saveFilter(const char *pattern)
 {
 	sFilterPattern = pattern;
@@ -326,6 +340,8 @@ void TDDHelper::setAlphaPremultiplied(Node *node)
 	ptr->setBlendFunc(BlendFunc::ALPHA_PREMULTIPLIED);
 }
 
+#pragma mark - String
+
 std::string TDDHelper::trimString(const std::string &input)
 {
 	int first = 0;
@@ -366,6 +382,50 @@ std::string TDDHelper::replaceString(const std::string &src,
 	
     return result;
 }
+
+std::vector<std::string> TDDHelper::splitString(const std::string& text,
+												const char delim, const int numToken)
+{
+	std::stringstream ss(text);
+    std::string item;
+	std::string lastToken("");
+	std::vector<std::string> tokens;
+	int count = 0;
+	
+	const char delimStr[2] = {delim, '\0'};		// make const char for later use
+	
+	while (std::getline(ss, item, delim)) {
+		if (numToken <= 0 || count < (numToken - 1)) {		// cond1: don't bound the token
+			tokens.push_back(item);							// cond2:
+		} else {
+			if(lastToken.length() == 0) {
+				lastToken.append(delimStr);
+			}
+			lastToken.append(item);
+		}
+	}
+	tokens.push_back(lastToken);
+    
+	return tokens;
+}
+
+std::string TDDHelper::joinString(const std::vector<std::string> &strArray,
+										const std::string &sep)
+{
+	std::string result = "";
+	
+	for(int i=0; i<strArray.size(); i++) {
+		if(i > 0) {
+			result.append(sep);
+		}
+		
+		result.append(strArray[i]);
+	}
+	
+	return result;
+}
+
+#pragma mark - UI
 
 Label *TDDHelper::createLabel(const std::string &text, const int fontSize, const Color3B &color)
 {

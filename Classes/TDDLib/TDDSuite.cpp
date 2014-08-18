@@ -15,6 +15,7 @@
 #include "TDDMenu.h"
 #include "TDDConstant.h"
 #include "TDDSwitch.h"
+#include "TDDData.h"
 
 static int gTestCount = sizeof(gTestArray) / sizeof(gTestArray[0]);
 
@@ -103,13 +104,14 @@ TDDSuiteLayer::TDDSuiteLayer()
 
 	// Top bar with: back, filter and all/history
 	setupToolBar();
-	
+
+	// Status
+	setupStatusBar();
+
 	// Menu
 	setupTestMenu();
 
 	
-	// Status
-	setupStatusBar();
 }
 
 TDDSuiteLayer::~TDDSuiteLayer()
@@ -135,11 +137,10 @@ void TDDSuiteLayer::filterTest(Ref * sender)
 	TDDHelper::saveFilter(trimPattern.c_str());
 	
 	// Director::getInstance()->popToRootScene();
-	refreshTestMenu();
+	setDisplayTestWithFilter();
 	
-	
-	updateStatusBar();
 }
+
 
 
 // Tool bar constains the following elements
@@ -206,7 +207,14 @@ Layer *TDDSuiteLayer::createToolBarLayer()
 	switches.push_back("all");
 	switches.push_back("history");
 	
-	switchControl->setSwitches(switches, CC_CALLBACK_3(TDDSuiteLayer::switchSelected, this));
+	TDDMenuMode savedMode = TDDData::instance()->getMenuMode();
+	int index = 0;
+	if(savedMode == TDDMenuModeHistory) {
+		index = 1;
+	}
+	
+	switchControl->setSwitches(switches,
+				CC_CALLBACK_3(TDDSuiteLayer::switchSelected, this), index);
 	
 	
 	return menuLayer;
@@ -216,6 +224,12 @@ Layer *TDDSuiteLayer::createToolBarLayer()
 void TDDSuiteLayer::switchSelected(Ref *sender, std::string name, int selected)
 {
 	log("selected switch: %s (%d)", name.c_str(), selected);
+	
+	if(selected == 1) {
+		setDisplayTestWithHistory();
+	} else {
+		setDisplayTestWithFilter();
+	}
 }
 
 
@@ -299,7 +313,12 @@ void TDDSuiteLayer::setupTestMenu()
 	mTestMenu = menu;
 	
 	// Refresh Menu Data
-	refreshTestMenu();
+	TDDMenuMode savedMode = TDDData::instance()->getMenuMode();
+	if(savedMode == TDDMenuModeHistory) {
+		setDisplayTestWithHistory();
+	} else {
+		setDisplayTestWithFilter();
+	}
 }
 
 const char *TDDSuiteLayer::getFilterName()
@@ -327,30 +346,34 @@ void TDDSuiteLayer::createMenuItemArray(const std::vector<int> &testIndices, Vec
 	}
 }
 
+void TDDSuiteLayer::createTestMenuItemArray(
+							const std::vector<std::string> &testNames,
+							Vector<MenuItem *> &menuArray)
+{
+	MenuItemFont::setFontName("GillSans");
+	MenuItemFont::setFontSize(22);
+	
+	MenuItem *menuItem;
+	for(int i=0; i<testNames.size(); i++) {
+		std::string name = testNames[i];
+		//menuItem = TDDHelper::createMenuItem(name, CC_CALLBACK_1(TDDSuiteLayer::menuCallback, this));
+		menuItem = TDDHelper::createMenuItemWithFont(name.c_str(), TDD_FONT_NAME,
+													 CC_CALLBACK_1(TDDSuiteLayer::menuCallback, this));
+		menuItem->setTag(i);	// this must be the index of the test in the gTestArray
+		
+		menuArray.pushBack(menuItem);
+	}
+}
+
+
 void TDDSuiteLayer::refreshTestMenu()
 {
 	//Array *menuArray = Array::createWithCapacity(gTestCount);
 	Vector<MenuItem *> menuArray;
 	
+	createTestMenuItemArray(mDisplayTest, menuArray);
 	
-	// TODO: Filtering !!!!
-	const char *filterPattern = getFilterName();
-	
-	std::vector<int> selectedIndices;
-	for (int i = 0; i < gTestCount; i++)
-	{
-		const char *name = gTestArray[i].name;
-		
-		if(passFilter(name, filterPattern) == false) {
-			continue;
-		}
-
-		selectedIndices.push_back(i);
-	}
-	
-	createMenuItemArray(selectedIndices, menuArray);
-	
-	mFilterCount = (int) selectedIndices.size();
+	mFilterCount = (int) mDisplayTest.size();
 	
 	// mTestMenu->setMenuItems(menuArray);
 	mTestMenu->setItemsWithColumn(menuArray);
@@ -384,6 +407,55 @@ void TDDSuiteLayer::editBoxReturn(cocos2d::extension::EditBox* editBox)
 }
 
 
+#pragma mark - Display Test Data
+void TDDSuiteLayer::setDisplayTestWithFilter()
+{
+	std::string name = TDDHelper::getFilter();
+	setDisplayTestWithFilter(name);
+	
+}
+
+void TDDSuiteLayer::setDisplayTestWithFilter(const std::string &filter)
+{
+	mDisplayTest.clear();
+	
+	
+	// TODO: Filtering !!!!
+	const char *filterPattern = getFilterName();
+	
+	for (int i = 0; i < gTestCount; i++)
+	{
+		const char *name = gTestArray[i].name;
+		
+		if(passFilter(name, filterPattern) == false) {
+			continue;
+		}
+		
+		mDisplayTest.push_back(std::string(name));
+	}
+
+	refreshTestMenu();
+	updateStatusBar();
+
+}
+
+void TDDSuiteLayer::setDisplayTestWithHistory()
+{
+	mDisplayTest.clear();
+	
+	
+	// TODO: Filtering !!!!
+	std::vector<std::string> tests = TDDData::instance()->getTestHistory();
+	
+	for (int i = 0; i < tests.size(); i++)
+	{
+		mDisplayTest.push_back(tests[i]);
+	}
+	
+	refreshTestMenu();
+	updateStatusBar();
+}
+
 #pragma mark -
 #pragma mark Test Action Handling
 void TDDSuiteLayer::runTest(int testIdx)
@@ -403,13 +475,46 @@ void TDDSuiteLayer::runTest(int testIdx)
     }
 }
 
+int TDDSuiteLayer::getTestIndexByName(const std::string &testName)
+{
+	for (int i = 0; i < gTestCount; i++)
+	{
+		const char *name = gTestArray[i].name;
+		
+		if(testName.compare(name) == 0) {
+			return i;
+		}
+	}
+	
+	return -1;
+}
+
+std::string TDDSuiteLayer::getDisplayTestNameByIndex(int index)
+{
+	if(index < 0 || index >= mDisplayTest.size()) {
+		return "";
+	}
+	
+	return mDisplayTest[index];
+}
+
 void TDDSuiteLayer::menuCallback(Ref * sender)
 {
 	log("menuCallback: is called");
 	MenuItem *item = dynamic_cast<MenuItem *>(sender);
 	
-	log("item tag=%d", item->getTag());
-	runTest(item->getTag());
+	std::string testName = getDisplayTestNameByIndex(item->getTag());
+	log("item tag=%d %s", item->getTag(), testName.c_str());
+	
+	int testIdx = getTestIndexByName(testName);
+	if(testIdx < 0) {
+		log("Cannot find the test!");
+		return;
+	}
+	
+	TDDData::instance()->addTest(testName);
+	
+	runTest(testIdx);
 	
 }
 

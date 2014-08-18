@@ -20,6 +20,8 @@
 #include "SwitchTest.h"
 #include "TDDSwitchTest.h"
 #include "TDDSuiteLayerTest.h"
+#include "TDDDataTest.h"
+#include "StdVectorTest.h"
 
 //#include#
 // NOTE!!! The above line is used to generate new unit test, must not be removed.
@@ -27,7 +29,9 @@
 // Define
 TDD_CASES
 {
+	TEST(StdVectorTest),
 	TEST(TDDMenuTest),
+	TEST(TDDDataTest),
 	TEST(TDDSuiteLayerTest),
 	TEST(TDDSwitchTest),
 	TEST(TDDSample1),

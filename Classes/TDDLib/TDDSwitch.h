@@ -33,7 +33,8 @@ public:
 	~TDDSwitch();
 	
 	void moveSwitchBg(int index);
-	void setSwitches(std::vector<std::string> switches, const tddSwitchCallback& callback);
+	void setSwitches(std::vector<std::string> switches,
+						const tddSwitchCallback& callback, int defaultSelection=0);
 	
 private:
 	Color4B mBgColor;
@@ -43,6 +44,7 @@ private:
 	
 	std::string mFont;
 	int mFontSize;
+	bool mEnableCallback;
 	
 	LayerColor *mSwitchBg;
 	Size mSwitchSize;

@@ -64,6 +64,10 @@
 		50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 50EF62A117ECD613001EB2F8 /* Icon-50.png */; };
 		73590E34198FFD7E0025BB96 /* SwitchTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73590E32198FFD7E0025BB96 /* SwitchTest.cpp */; };
 		7361B08A1997DD4B00C17A75 /* TDDSuiteLayerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7361B0881997DD4B00C17A75 /* TDDSuiteLayerTest.cpp */; };
+		7370DD11199C4DA600265AA0 /* TDDData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7370DD0F199C4DA600265AA0 /* TDDData.cpp */; };
+		7370DD12199C4DA600265AA0 /* TDDData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7370DD0F199C4DA600265AA0 /* TDDData.cpp */; };
+		7370DD17199C511500265AA0 /* TDDDataTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7370DD15199C511500265AA0 /* TDDDataTest.cpp */; };
+		7370DD18199C511500265AA0 /* TDDDataTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7370DD15199C511500265AA0 /* TDDDataTest.cpp */; };
 		738B66FE194E7ED200312D20 /* EditBoxTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738B66FC194E7ED200312D20 /* EditBoxTest.cpp */; };
 		738B6701194E7ED600312D20 /* EditBoxTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738B66FC194E7ED200312D20 /* EditBoxTest.cpp */; };
 		738B6702194E7EDA00312D20 /* LabelTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 739F7CCA194A8F720065CD2E /* LabelTest.cpp */; };
@@ -86,6 +90,7 @@
 		73A1E3BE1953C24B00165941 /* TDDHelperTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A1E3BB1953C24B00165941 /* TDDHelperTest.cpp */; };
 		73A1E3C31953C5EA00165941 /* ButtonTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A1E3C11953C5EA00165941 /* ButtonTest.cpp */; };
 		73A1E3C41953C5EA00165941 /* ButtonTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A1E3C11953C5EA00165941 /* ButtonTest.cpp */; };
+		73B77B6C19A2649000BB20B8 /* StdVectorTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73B77B6A19A2649000BB20B8 /* StdVectorTest.cpp */; };
 		73C6CA3E1991406E00200D4C /* TDDSwitch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73C6CA3C1991406E00200D4C /* TDDSwitch.cpp */; };
 		73C6CA3F1991406E00200D4C /* TDDSwitch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73C6CA3C1991406E00200D4C /* TDDSwitch.cpp */; };
 		73C6CA441991422F00200D4C /* TDDSwitchTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73C6CA421991422F00200D4C /* TDDSwitchTest.cpp */; };
@@ -294,6 +299,10 @@
 		73590E33198FFD7E0025BB96 /* SwitchTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchTest.h; sourceTree = "<group>"; };
 		7361B0881997DD4B00C17A75 /* TDDSuiteLayerTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDDSuiteLayerTest.cpp; sourceTree = "<group>"; };
 		7361B0891997DD4B00C17A75 /* TDDSuiteLayerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDSuiteLayerTest.h; sourceTree = "<group>"; };
+		7370DD0F199C4DA600265AA0 /* TDDData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TDDData.cpp; path = ../Classes/TDDLib/TDDData.cpp; sourceTree = "<group>"; };
+		7370DD10199C4DA600265AA0 /* TDDData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDDData.h; path = ../Classes/TDDLib/TDDData.h; sourceTree = "<group>"; };
+		7370DD15199C511500265AA0 /* TDDDataTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDDDataTest.cpp; sourceTree = "<group>"; };
+		7370DD16199C511500265AA0 /* TDDDataTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDDataTest.h; sourceTree = "<group>"; };
 		738B66FC194E7ED200312D20 /* EditBoxTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EditBoxTest.cpp; sourceTree = "<group>"; };
 		738B66FD194E7ED200312D20 /* EditBoxTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditBoxTest.h; sourceTree = "<group>"; };
 		73943954192BBE06009761FA /* TDDTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TDDTest.cpp; path = ../Classes/TDDLib/TDDTest.cpp; sourceTree = "<group>"; };
@@ -320,6 +329,8 @@
 		73A1E3BC1953C24B00165941 /* TDDHelperTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDHelperTest.h; sourceTree = "<group>"; };
 		73A1E3C11953C5EA00165941 /* ButtonTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ButtonTest.cpp; sourceTree = "<group>"; };
 		73A1E3C21953C5EA00165941 /* ButtonTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonTest.h; sourceTree = "<group>"; };
+		73B77B6A19A2649000BB20B8 /* StdVectorTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StdVectorTest.cpp; sourceTree = "<group>"; };
+		73B77B6B19A2649000BB20B8 /* StdVectorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StdVectorTest.h; sourceTree = "<group>"; };
 		73C6CA3C1991406E00200D4C /* TDDSwitch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TDDSwitch.cpp; path = ../Classes/TDDLib/TDDSwitch.cpp; sourceTree = "<group>"; };
 		73C6CA3D1991406E00200D4C /* TDDSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDDSwitch.h; path = ../Classes/TDDLib/TDDSwitch.h; sourceTree = "<group>"; };
 		73C6CA421991422F00200D4C /* TDDSwitchTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDDSwitchTest.cpp; sourceTree = "<group>"; };
@@ -545,6 +556,8 @@
 				739F7CCF194A949F0065CD2E /* TDDConstant.h */,
 				73C6CA3C1991406E00200D4C /* TDDSwitch.cpp */,
 				73C6CA3D1991406E00200D4C /* TDDSwitch.h */,
+				7370DD0F199C4DA600265AA0 /* TDDData.cpp */,
+				7370DD10199C4DA600265AA0 /* TDDData.h */,
 			);
 			name = TDDLib;
 			sourceTree = "<group>";
@@ -552,6 +565,10 @@
 		7394396F192BC7C3009761FA /* UnitTest */ = {
 			isa = PBXGroup;
 			children = (
+				73B77B6A19A2649000BB20B8 /* StdVectorTest.cpp */,
+				73B77B6B19A2649000BB20B8 /* StdVectorTest.h */,
+				7370DD15199C511500265AA0 /* TDDDataTest.cpp */,
+				7370DD16199C511500265AA0 /* TDDDataTest.h */,
 				7361B0881997DD4B00C17A75 /* TDDSuiteLayerTest.cpp */,
 				7361B0891997DD4B00C17A75 /* TDDSuiteLayerTest.h */,
 				73C6CA421991422F00200D4C /* TDDSwitchTest.cpp */,
@@ -793,6 +810,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73B77B6C19A2649000BB20B8 /* StdVectorTest.cpp in Sources */,
 				73943965192BBE06009761FA /* TDDHelper.cpp in Sources */,
 				73943963192BBE06009761FA /* TDDTest.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
@@ -805,10 +823,12 @@
 				1AFAF8B716D35DE700DB1158 /* AppDelegate.cpp in Sources */,
 				73943967192BBE06009761FA /* TDDMenu.cpp in Sources */,
 				7394396D192BBE06009761FA /* TDDSuite.cpp in Sources */,
+				7370DD17199C511500265AA0 /* TDDDataTest.cpp in Sources */,
 				73943972192BC7C3009761FA /* ExampleTest.cpp in Sources */,
 				73A1E3C31953C5EA00165941 /* ButtonTest.cpp in Sources */,
 				73590E34198FFD7E0025BB96 /* SwitchTest.cpp in Sources */,
 				73C6CA3E1991406E00200D4C /* TDDSwitch.cpp in Sources */,
+				7370DD11199C4DA600265AA0 /* TDDData.cpp in Sources */,
 				739F7CCC194A8F720065CD2E /* LabelTest.cpp in Sources */,
 				73C6CA441991422F00200D4C /* TDDSwitchTest.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
@@ -825,9 +845,11 @@
 				73943964192BBE06009761FA /* TDDTest.cpp in Sources */,
 				7394396C192BBE06009761FA /* SampleTest.cpp in Sources */,
 				73C6CA3F1991406E00200D4C /* TDDSwitch.cpp in Sources */,
+				7370DD12199C4DA600265AA0 /* TDDData.cpp in Sources */,
 				73943973192BC7C3009761FA /* ExampleTest.cpp in Sources */,
 				73A1E3C41953C5EA00165941 /* ButtonTest.cpp in Sources */,
 				73A1E3BE1953C24B00165941 /* TDDHelperTest.cpp in Sources */,
+				7370DD18199C511500265AA0 /* TDDDataTest.cpp in Sources */,
 				7394396E192BBE06009761FA /* TDDSuite.cpp in Sources */,
 				73943968192BBE06009761FA /* TDDMenu.cpp in Sources */,
 				7394396A192BBE06009761FA /* TDDMenuTest.cpp in Sources */,
