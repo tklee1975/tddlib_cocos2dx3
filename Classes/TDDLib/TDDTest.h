@@ -64,6 +64,7 @@ private:
 	TDDMenu *createTDDMenu();
 	void toggleMenu(Ref *sender);
 	void toggleStat(Ref *sender);
+	void backToSuite(Ref *sender);
 	
 // private data
 private:

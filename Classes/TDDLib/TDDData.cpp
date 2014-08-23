@@ -56,6 +56,21 @@ void TDDData::addTest(const std::string &testName)
 	save();
 }
 
+void TDDData::clearHistory()
+{
+	if(mTestHistory.size() <= 1) {
+		// No need to clear
+		return;
+	}
+	
+	vector<std::string>::iterator begin = mTestHistory.begin() + 1;
+	vector<std::string>::iterator end = mTestHistory.end();
+	
+	mTestHistory.erase(begin, end);
+	
+	save();
+}
+
 void TDDData::save()
 {
 	// Combine the history first

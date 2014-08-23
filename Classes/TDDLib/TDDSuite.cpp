@@ -26,8 +26,8 @@ static int gTestCount = sizeof(gTestArray) / sizeof(gTestArray[0]);
 #define kStatusBarFontSize	15
 
 //#define kColorTestMenu		Color4B(50, 50, 100, 255)
-#define kColorTestMenu		Color4B(255, 255, 255, 0)
-#define kColorToolBar		Color4B(TDD_COLOR_BLUE2)
+#define kColorTestMenu				Color4B(255, 255, 255, 0)
+#define kColorToolBar				Color4B(TDD_COLOR_BLUE2)
 
 #define kColorSwitchBg				Color4B(TDD_COLOR_WHITE)
 #define kColorSwitch				Color4B(TDD_COLOR_BLUE2)
@@ -65,11 +65,11 @@ TDDSuiteScene::~TDDSuiteScene()
 
 void TDDSuiteScene::onEnter()
 {
-	log("TDDSuiteScene: onEnter");
+	//log("TDDSuiteScene: onEnter");
 
 	Scene::onEnter();
 	
-	log("TDDSuiteScene: onEnter is called");
+	//log("TDDSuiteScene: onEnter is called");
 	
 	TDDSuiteLayer *layer = new TDDSuiteLayer();
 	addChild(layer);
@@ -83,7 +83,7 @@ void TDDSuiteScene::onEnter()
 
 void TDDSuiteScene::onExit()
 {
-	log("TDDSuiteScene: onExit");
+	//log("TDDSuiteScene: onExit");
 	this->removeAllChildren();
 	
 	Director::getInstance()->setDisplayStats(hasStat);
@@ -98,8 +98,12 @@ TDDSuiteLayer::TDDSuiteLayer()
 : mEditFilter(NULL)
 , mStatusLeftLabel(NULL)
 , mFilterCount(0)
+, mMode(TDDMenuModeAll)
+, mClearMenu(NULL)
 {
-	LayerColor *bgLayer = LayerColor::create(Color4B(TDD_COLOR_WHITE2), 800, 400);
+	Size screenSize = TDDHelper::getScreenSize();
+	LayerColor *bgLayer = LayerColor::create(Color4B(TDD_COLOR_WHITE2),
+											 screenSize.width, screenSize.height );
 	addChild(bgLayer);
 
 	// Top bar with: back, filter and all/history
@@ -120,15 +124,24 @@ TDDSuiteLayer::~TDDSuiteLayer()
 }
 
 
+void TDDSuiteLayer::clearHistory(Ref * sender)
+{
+	//log("clearHistory");
+	TDDData::instance()->clearHistory();
+	
+	setDisplayTestWithHistory();
+}
+
+
 void TDDSuiteLayer::goBack(Ref * sender)
 {
-	log("goback to main");
+	//log("goback to main");
 	Director::getInstance()->popToRootScene();
 }
 
 void TDDSuiteLayer::filterTest(Ref * sender)
 {
-	log("filterTest");
+	//log("filterTest");
 	
 	const char *pattern = (mEditFilter == NULL) ? "" : mEditFilter->getText();
 	
@@ -147,27 +160,30 @@ void TDDSuiteLayer::filterTest(Ref * sender)
 //	Back button
 //	Filter Input
 //	Switch
+//	Layout:		| BACK | INPUT  .... SWITCH |		// 800 or 480
+//  Landscape:  | 80
+//  Portrait:	| 80 | 80 | ... 120 |		400 - 120 = 280 -
 Layer *TDDSuiteLayer::createToolBarLayer()
 {
+	float scale = TDDHelper::getBestScale();
+	// bool isLandscape = TDDHelper::isLandscape();
 	Size screenSize = TDDHelper::getScreenSize();
 	int midY = kToolBarHeight/2;
 	
+	int buttonW = (int)(scale * 90);
+	int inputW = (int)(scale * 200);
+	int switchW = (int)(scale * 130);
+
 	
-	int backX = 50;
-	
-	int inputW = 200;
+	int backX = buttonW/2;
 	int inputH = kToolBarHeight - 10;
-	int inputX = inputW / 2 + backX + 50;
+	int inputX = inputW / 2 + buttonW;
 	
+	int clearX = buttonW + buttonW/2;
 	
-	int switchW = 170;
 	int switchY = 5;
-	int switchX = screenSize.width - switchW - 20;
+	int switchX = screenSize.width - switchW - 10;
 	int switchH = kToolBarHeight - switchY * 2;
-	
-	
-	int menuW = 70;
-	
 	
 	
 	
@@ -181,6 +197,14 @@ Layer *TDDSuiteLayer::createToolBarLayer()
 	
 	menuLayer->addChild(menuBack);
 	
+	
+	// Clear History button
+	Menu *menuClear = TDDHelper::createMenu(Point(clearX, midY), "Clear",
+									CC_CALLBACK_1(TDDSuiteLayer::clearHistory, this));
+	
+	menuLayer->addChild(menuClear);
+	mClearMenu = menuClear;
+	mClearMenu->setVisible(false);
 	
 	// Filter Input
 	
@@ -197,7 +221,7 @@ Layer *TDDSuiteLayer::createToolBarLayer()
 	TDDSwitch *switchControl = new TDDSwitch(Size(switchW, switchH),
 											 kColorSwitchBg, kColorSwitch,
 											 kColorSwitchOffText, kColorSwitchOnText,
-											 TDD_FONT_NAME, TDD_FONT_SIZE1);
+											 TDD_FONT_NAME, (int)(scale * TDD_FONT_SIZE2 ));
 	
 	switchControl->setPosition(Point(switchX, switchY));
 	
@@ -226,10 +250,14 @@ void TDDSuiteLayer::switchSelected(Ref *sender, std::string name, int selected)
 	log("selected switch: %s (%d)", name.c_str(), selected);
 	
 	if(selected == 1) {
+		mMode = TDDMenuModeHistory;
 		setDisplayTestWithHistory();
 	} else {
+		mMode = TDDMenuModeAll;
 		setDisplayTestWithFilter();
 	}
+	
+	TDDData::instance()->setMenuMode(mMode);
 }
 
 
@@ -284,7 +312,11 @@ void TDDSuiteLayer::updateStatusBar()
 	// Setting Left Label
 	char text[200];
 	
-	sprintf(text, "Total: %d  Filtered: %d", getTotalTestCount(), getFilteredTestCount());
+	if(mMode == TDDMenuModeHistory) {
+		sprintf(text, "Total: %d  History: %ld", getTotalTestCount(), mDisplayTest.size());
+	} else {
+		sprintf(text, "Total: %d  Filtered: %d", getTotalTestCount(), getFilteredTestCount());
+	}
 	mStatusLeftLabel->setString(text);
 	
 }
@@ -303,7 +335,9 @@ void TDDSuiteLayer::setupTestMenu()
 {
 	Size screenSize = TDDHelper::getScreenSize();
 	Size menuSize = Size(screenSize.width, screenSize.height - kToolBarHeight);
-
+	
+	//log("DEBUG: screenSize=%f,%f menuSize=%f,%f", screenSize.width, screenSize.height,
+	//	menuSize.width, menuSize.height);
 	
 	TDDMenu *menu = new TDDMenu(menuSize, kColorTestMenu, kLineHeight);
 	this->addChild(menu);
@@ -313,8 +347,8 @@ void TDDSuiteLayer::setupTestMenu()
 	mTestMenu = menu;
 	
 	// Refresh Menu Data
-	TDDMenuMode savedMode = TDDData::instance()->getMenuMode();
-	if(savedMode == TDDMenuModeHistory) {
+	mMode = TDDData::instance()->getMenuMode();
+	if(mMode == TDDMenuModeHistory) {
 		setDisplayTestWithHistory();
 	} else {
 		setDisplayTestWithFilter();
@@ -376,7 +410,8 @@ void TDDSuiteLayer::refreshTestMenu()
 	mFilterCount = (int) mDisplayTest.size();
 	
 	// mTestMenu->setMenuItems(menuArray);
-	mTestMenu->setItemsWithColumn(menuArray);
+	int numCol = TDDHelper::isLandscape() ? 3 : 2;
+	mTestMenu->setItemsWithColumn(menuArray, numCol);
 	
 	// update filter count
 	updateStatusBar();
@@ -386,7 +421,7 @@ void TDDSuiteLayer::refreshTestMenu()
 #pragma mark EditBoxDelegate
 void TDDSuiteLayer::editBoxTextChanged(cocos2d::extension::EditBox* editBox, const std::string& text)
 {
-	log("editBox change to [%s]", text.c_str());
+	//log("editBox change to [%s]", text.c_str());
 	
 	filterTest(NULL);
 }
@@ -435,12 +470,20 @@ void TDDSuiteLayer::setDisplayTestWithFilter(const std::string &filter)
 	}
 
 	refreshTestMenu();
+	
+	// Tool bar
+	mEditFilter->setVisible(true);
+	mClearMenu->setVisible(false);
+	
+	//
 	updateStatusBar();
 
 }
 
 void TDDSuiteLayer::setDisplayTestWithHistory()
 {
+	
+	// Update the mDisplay vector and refresh the menu
 	mDisplayTest.clear();
 	
 	
@@ -453,6 +496,12 @@ void TDDSuiteLayer::setDisplayTestWithHistory()
 	}
 	
 	refreshTestMenu();
+	
+	//
+	mEditFilter->setVisible(false);
+	mClearMenu->setVisible(true);
+	
+	//
 	updateStatusBar();
 }
 
@@ -500,15 +549,15 @@ std::string TDDSuiteLayer::getDisplayTestNameByIndex(int index)
 
 void TDDSuiteLayer::menuCallback(Ref * sender)
 {
-	log("menuCallback: is called");
+	//log("menuCallback: is called");
 	MenuItem *item = dynamic_cast<MenuItem *>(sender);
 	
 	std::string testName = getDisplayTestNameByIndex(item->getTag());
-	log("item tag=%d %s", item->getTag(), testName.c_str());
+	//log("item tag=%d %s", item->getTag(), testName.c_str());
 	
 	int testIdx = getTestIndexByName(testName);
 	if(testIdx < 0) {
-		log("Cannot find the test!");
+		log("Cannot find the test! name=%s", testName.c_str());
 		return;
 	}
 	

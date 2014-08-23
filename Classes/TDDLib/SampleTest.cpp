@@ -21,7 +21,7 @@ void TDDSample1::setUp()
     
 
 	
-	auto label = LabelTTF::create("Sample Code 1", kDefaultFont, kDefaultFontSize);
+	auto label = LabelTTF::create("Sample Code 1", "Arial", 20);
 	label->setPosition(Point(size.width/2, top.y - 40));
 	addChild(label);
 
@@ -37,7 +37,7 @@ void TDDSample1::setUp()
 		char temp[100];
 		sprintf(temp, "Font Size: %d", fontSize);
 		
-		auto label = LabelTTF::create(temp, kDefaultFont, fontSize);
+		auto label = LabelTTF::create(temp, "Arial", fontSize);
 		label->setPosition(pos);
 		addChild(label);
 		

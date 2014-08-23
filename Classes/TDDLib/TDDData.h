@@ -25,6 +25,7 @@ public:
 	void addTest(const std::string &testName);
 	void setMenuMode(const TDDMenuMode &mode);
 	TDDMenuMode getMenuMode();
+	void clearHistory();
 	
 	void save();
 	void load();

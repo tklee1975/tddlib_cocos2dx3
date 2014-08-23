@@ -26,6 +26,7 @@ void TDDDataTest::tearDown()
 
 void TDDDataTest::setSubTest(Vector<MenuItem *> &menuArray)
 {
+	SUBTEST(TDDDataTest::testClearHistory);
 	SUBTEST(TDDDataTest::testSave);
 	SUBTEST(TDDDataTest::testLoad);
 	SUBTEST(TDDDataTest::testAddTest);
@@ -67,5 +68,13 @@ void TDDDataTest::testSave(Ref *sender)
 	log("%s\n", TDDData::instance()->toString().c_str());
 }
 
+void TDDDataTest::testClearHistory(Ref *sender)
+{
+	log("Before Clear\n%s\n", TDDData::instance()->toString().c_str());
+	
+	TDDData::instance()->clearHistory();
+	
+	log("After Clear\n%s\n", TDDData::instance()->toString().c_str());
+}
 
 #endif

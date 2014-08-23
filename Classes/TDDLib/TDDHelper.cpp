@@ -24,6 +24,9 @@
 
 #define kTDDFilterKey	"tdd.filter.pattern"
 
+#define BEST_WIDTH	800
+#define BEST_HEIGHT	480
+
 static std::string sFilterPattern("");
 
 Size TDDHelper::getScreenSize()
@@ -72,7 +75,8 @@ void TDDHelper::showTests()
 
 MenuItem *TDDHelper::createMenuItem(const char *name, const ccMenuCallback& callback)
 {
-	auto label = LabelTTF::create(name, kDefaultFont, kDefaultFontSize);
+	int fontSize = (int)(getBestScale() * TDD_FONT_SIZE1);
+	auto label = LabelTTF::create(name, TDD_FONT_NAME, fontSize);
 	
 	auto menuItem = MenuItemLabel::create(label, callback);
 	
@@ -89,7 +93,10 @@ MenuItem *TDDHelper::createMenuItemWithFont(const char *name,
 
 	
 	// LabelTTF *label = LabelTTF::create(name, kDefaultFont, kDefaultFontSize);
-	Label *label = Label::createWithSystemFont(name, font, kDefaultFontSize);
+	float scale = getBestScale();
+	int fontSize = (int)(getBestScale() * TDD_FONT_SIZE1);
+	
+	Label *label = Label::createWithSystemFont(name, font, fontSize );
 	setLabelColor(label, color);
 	
 	return MenuItemLabel::create(label, callback);
@@ -100,7 +107,8 @@ MenuItem *TDDHelper::createMenuItemWithFont(const char *name,
 MenuItem *TDDHelper::createMenuItemWithFont(const char *name, const char *font,
 											const ccMenuCallback& callback)
 {
-	Label *label = Label::createWithSystemFont(name, font, kDefaultFontSize);
+	int fontSize = (int)(getBestScale() * TDD_FONT_SIZE1);
+	Label *label = Label::createWithSystemFont(name, font, fontSize);
 	setLabelColor(label, TDD_COLOR_BLUE2);
 	
 	return MenuItemLabel::create(label, callback);
@@ -110,7 +118,7 @@ MenuItem *TDDHelper::createMenuItemWithFont(const char *name, const char *font,
 Menu *TDDHelper::createMenu(Point pos, const char *name, const ccMenuCallback& callback)
 {
 	
-	auto menuItem = createMenuItemWithFont(name, kDefaultFont, Color3B::WHITE, callback);
+	auto menuItem = createMenuItemWithFont(name, TDD_FONT_NAME, Color3B::WHITE, callback);
 	Menu *menu = Menu::create(menuItem, NULL);
 	menu->setPosition(pos);
 	
@@ -149,12 +157,13 @@ EditBox * TDDHelper::createEditBox(Node *parent, Point position, Size size)
 	layerPos.x -= size.width / 2;
 	layerPos.y -= size.height / 2;
 	
+	float scale = getBestScale();
 	
 	// Add the Edit box
 	EditBox *edit = EditBox::create(size, bg);
 	edit->setPosition(position);
 	
-	edit->setFont(TDD_FONT_NAME, TDD_EDITBOX_FONT_SIZE);
+	edit->setFont(TDD_FONT_NAME, (int)(scale * TDD_EDITBOX_FONT_SIZE));
 	edit->setFontColor(TDD_EDITBOX_TEXT_COLOR);
 	
 	if(parent != NULL) {
@@ -165,7 +174,12 @@ EditBox * TDDHelper::createEditBox(Node *parent, Point position, Size size)
 }
 
 
-
+bool TDDHelper::isLandscape()
+{
+	Size screenSize = getScreenSize();
+	
+	return screenSize.width > screenSize.height;
+}
 
 void TDDHelper::scrollToTop(ScrollView *scrollView)
 {
@@ -425,11 +439,22 @@ std::string TDDHelper::joinString(const std::vector<std::string> &strArray,
 	return result;
 }
 
+#pragma mark - Scale
+float TDDHelper::getBestScale()
+{
+	
+	float designValue = BEST_WIDTH;	// longer one
+	Size screenSize = getScreenSize();
+	float screenValue = isLandscape() ? screenSize.width : screenSize.height;
+	
+	return screenValue / designValue;
+}
+
 #pragma mark - UI
 
 Label *TDDHelper::createLabel(const std::string &text, const int fontSize, const Color3B &color)
 {
-	Label *label = Label::createWithSystemFont(text, kDefaultFont, fontSize);
+	Label *label = Label::createWithSystemFont(text, TDD_FONT_NAME, fontSize);
 
 	setLabelColor(label, color);
 

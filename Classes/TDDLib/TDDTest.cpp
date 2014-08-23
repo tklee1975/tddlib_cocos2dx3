@@ -11,6 +11,7 @@
 #include "extensions/cocos-ext.h"
 #include "TDDHelper.h"
 #include "TDDMenu.h"
+#include "TDDConstant.h"
 
 #include <string>
 
@@ -43,35 +44,7 @@ namespace {
 
 		trimName = str.substr(pos+1);
 	}
-//
-//	Size getScreenSize()
-//	{
-//		auto glView = EGLView::getInstance();
-//        return glView->getDesignResolutionSize();
-//	}
-//	
-//	Point getTopLeftPoint(float x, float y)
-//	{
-//		Point point = Point(x, y);
-//		return Director::getInstance()->convertToGL(point);
-//	}
-//	
-//	Point getAlignPoint(float x, float y, bool isTop, bool isRight)
-//	{
-//		Size size = getScreenSize();
-//		
-//		if(isRight) {
-//			x = size.width - x;
-//		}
-//		
-//		Point point = Point(x, y);
-//
-//		if(isTop == false) {	// bottom, use openGL position directly
-//			return point;
-//		}
-//		
-//		return Director::getInstance()->convertToGL(point);
-//	}
+
 }
 
 #pragma mark -
@@ -119,16 +92,9 @@ void TDDTest::setupGUI()
 	setupControlLayer();
 }
 
-//void TDDTest::backToTestSuite()
-//{
-//	
-//}
-
 void TDDTest::setUp()
 {
 	log("TDDTest::setUp is called");
-	
-//	LabelTTF *label = LabelTTF::create("Please code something!!", kDefaultFont, kDefaultFontSize);
 
 	char tempStr[200];
 	sprintf(tempStr, "Enjoy the Test Driven Development!\n(%s %s)",
@@ -136,7 +102,9 @@ void TDDTest::setUp()
 										TDDHelper::getVersion().c_str());
 	
 	//auto label = Label::createWithTTF(tempStr, "Marker Felt.ttf", kDefaultFontSize);
-	auto label = LabelTTF::create(tempStr, kDefaultFont, kDefaultFontSize);
+	float scale = TDDHelper::getBestScale();
+	int fontSize = (int)(scale * TDD_FONT_SIZE1);
+	auto label = LabelTTF::create(tempStr, TDD_FONT_NAME, fontSize);
 	
 	Size size = TDDHelper::getScreenSize();
 	
@@ -176,7 +144,7 @@ void TDDTest::addSubTestMenu(Vector<MenuItem *> &menuArray, const char *name, co
 	// trim the "prefix before ::"
 	std::string trimName;
 	removeNameSpace(name, trimName);
-	log("DEBUG: addSubTestMenu: %s", trimName.c_str());
+	//log("DEBUG: addSubTestMenu: %s", trimName.c_str());
 	
 	// Create menu and add it!!
 	MenuItem *menuItem = TDDHelper::createMenuItem(trimName.c_str(), callback);
@@ -206,23 +174,19 @@ void TDDTest::setSubTest(Vector<MenuItem *> &menuArray)
 #pragma mark GUI
 Menu *TDDTest::createBackMenu()
 {
-	auto label = LabelTTF::create("Back", kDefaultFont, kDefaultFontSize);
-	
-	
-	MenuItemLabel *menuItem = MenuItemLabel::create(label,
-										  [](Ref *sender) {
-											  log("createBackMenu: called");
-											  Director::getInstance()->popScene();
-										  }
-										  );
-	
-	Menu *menu = Menu::create(menuItem, NULL);
+	Point pos = Point(0, 0);
+	Menu *menu = TDDHelper::createMenu(pos, "Back", CC_CALLBACK_1(TDDTest::backToSuite, this));
 	return menu;
+}
+
+void TDDTest::backToSuite(Ref *sender)
+{
+	Director::getInstance()->popScene();
 }
 
 void TDDTest::toggleMenu(Ref *sender)
 {
-	log("TODO: Show/Hide the menu");
+	//log("TODO: Show/Hide the menu");
 	MenuItemLabel *menuItem = static_cast<MenuItemLabel *>(sender);
 	if(menuItem == NULL) {
 		log("toggleMenu: menuItem is NULL");
@@ -251,13 +215,9 @@ void TDDTest::setMenuVisible(bool flag)
 
 Menu *TDDTest::createToggleMenu()
 {
-	auto label = LabelTTF::create("Menu", kDefaultFont, kDefaultFontSize);
-	
-	MenuItemLabel *menuItem = MenuItemLabel::create(label, CC_CALLBACK_1(TDDTest::toggleMenu, this));
-	
-	setMenuVisible(true);		// default is true
-	
-	Menu *menu = Menu::create(menuItem, NULL);
+	Point pos = Point(0, 0);
+	Menu *menu = TDDHelper::createMenu(pos, "Menu", CC_CALLBACK_1(TDDTest::toggleMenu, this));
+	setMenuVisible(true);
 	return menu;
 }
 

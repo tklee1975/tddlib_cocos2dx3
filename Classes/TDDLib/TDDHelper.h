@@ -28,6 +28,9 @@ using namespace std;
 class TDDHelper
 {
 public:
+	static void addTestButton(Node *parent, cocos2d::Point pos);
+
+	
 	static std::string getVersion();
 	static std::string getLibraryName();
 	
@@ -35,7 +38,6 @@ public:
 	static Point getAlignPoint(float x, float y, TDDAlign halign, TDDAlign valign);
 	
 	static void showTests();
-	static void addTestButton(Node *parent, cocos2d::Point pos);
 	static Menu *createMenu(cocos2d::Point pos, const char *name, const ccMenuCallback& callback);
 	static MenuItem *createMenuItem(const char *name, const ccMenuCallback& callback);
 	static void scrollToTop(ScrollView *scrollView);
@@ -70,7 +72,9 @@ public:
 								const int fontSize, const Color3B &color);
 	// static Layer *createKeyPadLayer(Object *target, Control::Handler handler);
 
-
+	static bool isLandscape();
+	static float getBestScale();
+	
 	#pragma mark - Save/Load Data
 	static void saveStringToDevice(const std::string &key, const std::string &content);
 	static std::string loadStringFromDevice(const std::string &key);

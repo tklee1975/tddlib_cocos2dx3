@@ -13,12 +13,14 @@
 #include "extensions/cocos-ext.h"
 #include <vector>
 #include <string>
+#include "TDDTypes.h"
 
 USING_NS_CC_EXT;
 
 USING_NS_CC;
 
 class TDDMenu;
+
 
 class TDDSuiteScene : public Scene
 {
@@ -37,6 +39,8 @@ class TDDSuiteLayer : public Layer,
 				public cocos2d::extension::EditBoxDelegate
 {
 public:
+
+public:
     TDDSuiteLayer();
     ~TDDSuiteLayer();
 
@@ -52,10 +56,11 @@ private:
     Point mBeginPos;
 	TDDMenu *mTestMenu;
 	EditBox *mEditFilter;
+	Menu *mClearMenu;
 	int mFilterCount;
 	Label *mStatusLeftLabel;
 	std::vector<std::string> mDisplayTest;
-	
+	TDDMenuMode mMode;
 	
 #pragma mark -
 #pragma mark Private Method
@@ -67,6 +72,9 @@ private:
 	void createMenuItemArray(const std::vector<int> &testIndices, Vector<MenuItem *> &menuArray);
 	void createTestMenuItemArray(const std::vector<std::string> &testNames,
 												Vector<MenuItem *> &menuArray);
+	
+	void clearHistory(Ref * sender);
+	
 	Layer *createStatusBarLayer();
 	void setupStatusBar();
 	void updateStatusBar();

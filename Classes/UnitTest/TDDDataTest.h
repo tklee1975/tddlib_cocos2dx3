@@ -22,6 +22,7 @@ private:
 	void testAddTest(Ref *sender);
 	void testLoad(Ref *sender);
 	void testSave(Ref *sender);
+	void testClearHistory(Ref *sender);
 }; 
 
 #endif

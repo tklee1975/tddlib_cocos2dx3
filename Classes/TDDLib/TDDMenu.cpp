@@ -145,7 +145,7 @@ void TDDMenu::setItemsWithColumn(Vector<MenuItem *> &itemArray, int column)
 	Size newSize = Size(layerW, layerH);
 	mMainLayer->setContentSize(newSize);
 	this->setContentSize(newSize);
-	
+	log("newContentSize: %f,%f", newSize.width, newSize.height);
 	
 	// mMenu->alignItemsVertically();
 	// Scroll to Top

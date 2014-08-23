@@ -84,8 +84,9 @@ void TDDSwitch::moveSwitchBg(int index)
 	for(int i=0; i<index; i++) {
 		switchPos.x += mSwitchSize.width;
 	}
-	
-	mSwitchBg->setPosition(switchPos);
+	if(mSwitchBg) {
+		mSwitchBg->setPosition(switchPos);
+	}
 }
 
 
