@@ -1,4 +1,4 @@
-TDDLib on cocos2d-x
+TDDccx3: TDD Framework for cocos2d-x 
 ================
 
 (This README is composed in http://dillinger.io/)
@@ -6,14 +6,17 @@ TDDLib on cocos2d-x
 A Test Driven Development Framework for cocos2d-x 3.0 final. 
 It helps building unit tests with cocos2d-x 3.0.
 
+## Goal
+* This project wanna help cocos2d-x developer developer Visual Unit Tests, such as UI building blocks,
+animation test, ... 
+
 ## Feature
 
-* Create Tests
-* Create sub tests for one Test
-* Filter test by keyword
+* Tests can be created easily 
+* Tests can be filtered out
+* Test History is kept so it is ease to redo the recent tests;
 
 ## Project Structure
-
 * /script : The script to create a new test 
 * /Classes : The example project source 
 * /Classes/TDDLib : The TDDLib library source
@@ -24,7 +27,16 @@ It helps building unit tests with cocos2d-x 3.0.
 
 ### 1. Download the Library project 
 
-The project library can be downloaded at https://github.com/tklee1975/tddlib_cocos2dx3; You can use download as ZIP or clone the project
+* Main Development Code: 
+ * https://github.com/tklee1975/tddlib_cocos2dx3 (The core source on which develop the TDDccx3, contains the unit tests made for the framework) 
+
+* Demos: 
+ * https://github.com/tklee1975/TDDccx3Demo (Landscape orientation)
+ * https://github.com/tklee1975/TDDccx3DemoP (Portrait orientation)
+
+* Note:
+  * If you want to try and use, download the demo, it is simpler
+  * If you want to hack the code and changes, download the development code.
 
 ### 2. Add the library to your project
 
@@ -77,29 +89,23 @@ TDDHelper::addTestButton(this, Point(visibleSize.width/2, 50));
 * Add the new UnitTest header and source files to XCode
 * For my preference, I will place them in a group called 'UnitTest'.
 
-### 3. Add an entry in TDDCases.h
+### 3. Create the MyTDDCases.h 
 
-* The above steps are make the Unit Test code available, this step is to make the test code visible in the test menu.
-* To do so, need to add some codes in TDDCases.h
+MyTDDCases.h is the your header defining the test cases you created.
 
- * Add the header file of new Unit Test. e.g <code>#include "ExampleTest.h"</code>
- * Add an entry in gTestArray, e.g <code>ADD_CASE(ExampleTest)</code>
-  
-* When it is done, the TDDCases.h will be shown like the following code sample:
-
+This is the sample code 
 <pre>
-#include "SampleTest.h"
-#include "ExampleTest.h" 
-// 
-#define ADD_CASE(__ClassName__) {#__ClassName__, []() { return new __ClassName__(); } }
-// Define
-TDDTestCase gTestArray[] =
+// include files
+#include "ExampleTest.h"	// Test class header
+
+// Test Class Definition 
+TDD_CASES
 {
-	ADD_CASE(TDDTest),
-	ADD_CASE(TDDSample1),
-	ADD_CASE(ExampleTest),
+	TEST(ExampleTest),	// Test class name
 };
 </pre>
+
+To add a new test, just include your test class header and define it inside TDD_CASES block
  
  
 
