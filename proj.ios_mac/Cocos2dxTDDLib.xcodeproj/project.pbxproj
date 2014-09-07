@@ -91,6 +91,10 @@
 		73A1E3C31953C5EA00165941 /* ButtonTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A1E3C11953C5EA00165941 /* ButtonTest.cpp */; };
 		73A1E3C41953C5EA00165941 /* ButtonTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A1E3C11953C5EA00165941 /* ButtonTest.cpp */; };
 		73B77B6C19A2649000BB20B8 /* StdVectorTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73B77B6A19A2649000BB20B8 /* StdVectorTest.cpp */; };
+		73BE282919B95518008B3B4B /* TDDSubMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73BE282719B95518008B3B4B /* TDDSubMenu.cpp */; };
+		73BE282A19B95518008B3B4B /* TDDSubMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73BE282719B95518008B3B4B /* TDDSubMenu.cpp */; };
+		73BE282F19B957A7008B3B4B /* TDDSubMenuTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73BE282D19B957A7008B3B4B /* TDDSubMenuTest.cpp */; };
+		73BE283019B957A7008B3B4B /* TDDSubMenuTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73BE282D19B957A7008B3B4B /* TDDSubMenuTest.cpp */; };
 		73C6CA3E1991406E00200D4C /* TDDSwitch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73C6CA3C1991406E00200D4C /* TDDSwitch.cpp */; };
 		73C6CA3F1991406E00200D4C /* TDDSwitch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73C6CA3C1991406E00200D4C /* TDDSwitch.cpp */; };
 		73C6CA441991422F00200D4C /* TDDSwitchTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73C6CA421991422F00200D4C /* TDDSwitchTest.cpp */; };
@@ -331,6 +335,10 @@
 		73A1E3C21953C5EA00165941 /* ButtonTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonTest.h; sourceTree = "<group>"; };
 		73B77B6A19A2649000BB20B8 /* StdVectorTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StdVectorTest.cpp; sourceTree = "<group>"; };
 		73B77B6B19A2649000BB20B8 /* StdVectorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StdVectorTest.h; sourceTree = "<group>"; };
+		73BE282719B95518008B3B4B /* TDDSubMenu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TDDSubMenu.cpp; path = ../Classes/TDDLib/TDDSubMenu.cpp; sourceTree = "<group>"; };
+		73BE282819B95518008B3B4B /* TDDSubMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDDSubMenu.h; path = ../Classes/TDDLib/TDDSubMenu.h; sourceTree = "<group>"; };
+		73BE282D19B957A7008B3B4B /* TDDSubMenuTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDDSubMenuTest.cpp; sourceTree = "<group>"; };
+		73BE282E19B957A7008B3B4B /* TDDSubMenuTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDSubMenuTest.h; sourceTree = "<group>"; };
 		73C6CA3C1991406E00200D4C /* TDDSwitch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TDDSwitch.cpp; path = ../Classes/TDDLib/TDDSwitch.cpp; sourceTree = "<group>"; };
 		73C6CA3D1991406E00200D4C /* TDDSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDDSwitch.h; path = ../Classes/TDDLib/TDDSwitch.h; sourceTree = "<group>"; };
 		73C6CA421991422F00200D4C /* TDDSwitchTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDDSwitchTest.cpp; sourceTree = "<group>"; };
@@ -538,11 +546,12 @@
 		73943951192BBDA9009761FA /* TDDLib */ = {
 			isa = PBXGroup;
 			children = (
-				73943954192BBE06009761FA /* TDDTest.cpp */,
 				73943955192BBE06009761FA /* TDDHelper.cpp */,
 				73943956192BBE06009761FA /* TDDHelper.h */,
 				73943957192BBE06009761FA /* TDDLib.h */,
 				73943958192BBE06009761FA /* TDDTest.h */,
+				73943954192BBE06009761FA /* TDDTest.cpp */,
+				73943960192BBE06009761FA /* TDDMenu.h */,
 				73943959192BBE06009761FA /* TDDMenu.cpp */,
 				7394395A192BBE06009761FA /* SampleTest.h */,
 				7394395D192BBE06009761FA /* SampleTest.cpp */,
@@ -550,7 +559,6 @@
 				7394395E192BBE06009761FA /* TDDSuite.cpp */,
 				7394395F192BBE06009761FA /* TDDMenuTest.h */,
 				7394395C192BBE06009761FA /* TDDMenuTest.cpp */,
-				73943960192BBE06009761FA /* TDDMenu.h */,
 				73943961192BBE06009761FA /* TDDSuite.h */,
 				73943962192BBE06009761FA /* TDDTypes.h */,
 				739F7CCF194A949F0065CD2E /* TDDConstant.h */,
@@ -558,6 +566,8 @@
 				73C6CA3D1991406E00200D4C /* TDDSwitch.h */,
 				7370DD0F199C4DA600265AA0 /* TDDData.cpp */,
 				7370DD10199C4DA600265AA0 /* TDDData.h */,
+				73BE282719B95518008B3B4B /* TDDSubMenu.cpp */,
+				73BE282819B95518008B3B4B /* TDDSubMenu.h */,
 			);
 			name = TDDLib;
 			sourceTree = "<group>";
@@ -565,6 +575,8 @@
 		7394396F192BC7C3009761FA /* UnitTest */ = {
 			isa = PBXGroup;
 			children = (
+				73BE282D19B957A7008B3B4B /* TDDSubMenuTest.cpp */,
+				73BE282E19B957A7008B3B4B /* TDDSubMenuTest.h */,
 				73B77B6A19A2649000BB20B8 /* StdVectorTest.cpp */,
 				73B77B6B19A2649000BB20B8 /* StdVectorTest.h */,
 				7370DD15199C511500265AA0 /* TDDDataTest.cpp */,
@@ -818,6 +830,7 @@
 				738B66FE194E7ED200312D20 /* EditBoxTest.cpp in Sources */,
 				7394396B192BBE06009761FA /* SampleTest.cpp in Sources */,
 				73A1E3BD1953C24B00165941 /* TDDHelperTest.cpp in Sources */,
+				73BE282919B95518008B3B4B /* TDDSubMenu.cpp in Sources */,
 				73FDCDF9195C7915005D8E65 /* ScrollTest.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				1AFAF8B716D35DE700DB1158 /* AppDelegate.cpp in Sources */,
@@ -833,6 +846,7 @@
 				73C6CA441991422F00200D4C /* TDDSwitchTest.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				73943969192BBE06009761FA /* TDDMenuTest.cpp in Sources */,
+				73BE282F19B957A7008B3B4B /* TDDSubMenuTest.cpp in Sources */,
 				1AFAF8B816D35DE700DB1158 /* HelloWorldScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -843,9 +857,11 @@
 			files = (
 				73C6CA451991422F00200D4C /* TDDSwitchTest.cpp in Sources */,
 				73943964192BBE06009761FA /* TDDTest.cpp in Sources */,
+				73BE282A19B95518008B3B4B /* TDDSubMenu.cpp in Sources */,
 				7394396C192BBE06009761FA /* SampleTest.cpp in Sources */,
 				73C6CA3F1991406E00200D4C /* TDDSwitch.cpp in Sources */,
 				7370DD12199C4DA600265AA0 /* TDDData.cpp in Sources */,
+				73BE283019B957A7008B3B4B /* TDDSubMenuTest.cpp in Sources */,
 				73943973192BC7C3009761FA /* ExampleTest.cpp in Sources */,
 				73A1E3C41953C5EA00165941 /* ButtonTest.cpp in Sources */,
 				73A1E3BE1953C24B00165941 /* TDDHelperTest.cpp in Sources */,

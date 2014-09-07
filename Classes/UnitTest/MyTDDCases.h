@@ -22,6 +22,7 @@
 #include "TDDSuiteLayerTest.h"
 #include "TDDDataTest.h"
 #include "StdVectorTest.h"
+#include "TDDSubMenuTest.h"
 
 //#include#
 // NOTE!!! The above line is used to generate new unit test, must not be removed.
@@ -29,6 +30,7 @@
 // Define
 TDD_CASES
 {
+	TEST(TDDSubMenuTest),
 	TEST(StdVectorTest),
 	TEST(TDDMenuTest),
 	TEST(TDDDataTest),

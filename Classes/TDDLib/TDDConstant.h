@@ -10,8 +10,8 @@
 #define Cocos2dxTDDLib_TDDConstant_h
 
 #define APP_NAME		"tddccx3"
-#define VERSION			"1.0.0"
-#define BUILD			1
+#define VERSION			"1.1.0"
+#define BUILD			2
 
 #define TDD_FONT_NAME	"GillSans"
 //#define TDD_FONT_NAME	"Helvetica"
