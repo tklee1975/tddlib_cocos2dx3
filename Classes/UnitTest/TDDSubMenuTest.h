@@ -20,6 +20,9 @@ protected:
 	
 private:
 	void subTest(Ref *sender);
+	void testMenu(Ref *sender);
+	
+	void onBackPressed(Ref *sender, Control::EventType controlEvent);
 }; 
 
 #endif
