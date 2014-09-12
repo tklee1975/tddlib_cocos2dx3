@@ -159,9 +159,6 @@ So, we can setup a custom testing UI at the setUp logic to fit the test environm
 * Feature: 
     * Test Filtering in the Test Menu (done)
     * Beautify the UI
-    * More compact subtest menu
-    * Remmber the test filtering keyword
-    * Clear the current filtering keyword
 * Sample Code
     * Custom Test UI. e.g particle test with setting sliders
 
